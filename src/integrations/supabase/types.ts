@@ -27,6 +27,7 @@ export type Database = {
           preferred_time: string | null
           notes: string | null
           status: string
+          video_call_preference: string | null
         }
         Insert: {
           id?: string
@@ -40,6 +41,7 @@ export type Database = {
           preferred_time?: string | null
           notes?: string | null
           status?: string
+          video_call_preference?: string | null
         }
         Update: {
           id?: string
@@ -53,6 +55,7 @@ export type Database = {
           preferred_time?: string | null
           notes?: string | null
           status?: string
+          video_call_preference?: string | null
         }
         Relationships: []
       }
@@ -61,7 +64,18 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      get_doctor_bookings: {
+        Args: { access_key: string }
+        Returns: Database["public"]["Tables"]["bookings"]["Row"][]
+      }
+      update_doctor_booking_status: {
+        Args: { access_key: string; booking_id: string; new_status: string }
+        Returns: Database["public"]["Tables"]["bookings"]["Row"]
+      }
+      delete_doctor_booking: {
+        Args: { access_key: string; booking_id: string }
+        Returns: boolean
+      }
     }
     Enums: {
       [_ in never]: never

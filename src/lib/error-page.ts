@@ -15,16 +15,41 @@ export function renderErrorPage(): string {
       .primary { background: #111; color: #fff; }
       .secondary { background: #fff; color: #111; border-color: #d1d5db; }
     </style>
+    <script>
+      (function () {
+        try {
+          if (localStorage.getItem("manonirmaan-language") !== "hi") return;
+          document.documentElement.lang = "hi";
+          document.title = "यह पेज लोड नहीं हुआ";
+          window.__MANONIRMAAN_ERROR_COPY__ = {
+            title: "यह पेज लोड नहीं हुआ",
+            body: "हमारी ओर से कुछ गलत हो गया। आप फिर से कोशिश कर सकते हैं या होम पर वापस जा सकते हैं।",
+            retry: "फिर कोशिश करें",
+            home: "होम पर जाएं"
+          };
+        } catch (_) {}
+      })();
+    </script>
   </head>
   <body>
     <div class="card">
-      <h1>This page didn't load</h1>
-      <p>Something went wrong on our end. You can try refreshing or head back home.</p>
+      <h1 data-i18n="title">This page didn't load</h1>
+      <p data-i18n="body">Something went wrong on our end. You can try refreshing or head back home.</p>
       <div class="actions">
-        <button class="primary" onclick="location.reload()">Try again</button>
-        <a class="secondary" href="/">Go home</a>
+        <button class="primary" data-i18n="retry" onclick="location.reload()">Try again</button>
+        <a class="secondary" data-i18n="home" href="/">Go home</a>
       </div>
     </div>
+    <script>
+      (function () {
+        var copy = window.__MANONIRMAAN_ERROR_COPY__;
+        if (!copy) return;
+        Object.keys(copy).forEach(function (key) {
+          var node = document.querySelector('[data-i18n="' + key + '"]');
+          if (node) node.textContent = copy[key];
+        });
+      })();
+    </script>
   </body>
 </html>`;
 }

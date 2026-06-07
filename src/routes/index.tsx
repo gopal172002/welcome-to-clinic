@@ -1,26 +1,51 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
+import { useTranslatedHead } from "@/lib/useTranslatedHead";
+import { teamMembers } from "@/lib/team";
 import hero from "@/assets/hero.jpg";
-import portrait from "@/assets/devyani.jpg";
 import growth from "@/assets/growth.jpg";
 import { ArrowRight, Heart, Shield, Sprout, Users } from "lucide-react";
+
+type IntroItem = { n: string; t: string; d: string };
+type WhyItem = { t: string; d: string };
+
+const whyIcons = [Heart, Shield, Users, Sprout, Sprout] as const;
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "ManoNirmaan — Psychotherapy in Varanasi by Devyani Barodh" },
-      { name: "description", content: "A quiet space for the mind. Compassionate, evidence-based psychotherapy for children, adolescents and adults. Online & in-person sessions in Varanasi." },
-      { property: "og:title", content: "ManoNirmaan — A quiet space for the mind" },
-      { property: "og:description", content: "Restore. Reconnect. Rebuild. Psychotherapy with Devyani Barodh, M.Phil Clinical Psychology." },
+      { title: "ManoNirmaan - Mental Health & Learning Support in Varanasi" },
+      {
+        name: "description",
+        content:
+          "A quiet space for the mind. Compassionate clinical psychology, counselling, special education and community medicine support. Online & in-person sessions in Varanasi.",
+      },
+      { property: "og:title", content: "ManoNirmaan - A quiet space for the mind" },
+      {
+        property: "og:description",
+        content: "Restore. Reconnect. Rebuild. Care from the ManoNirmaan multidisciplinary team.",
+      },
     ],
   }),
   component: Index,
 });
 
 function Index() {
+  const { t } = useTranslation();
+  const introItems = t("home.intro.items", { returnObjects: true }) as IntroItem[];
+  const whyItems = t("home.why.items", { returnObjects: true }) as WhyItem[];
+  const concerns = t("concerns.home", { returnObjects: true }) as string[];
+
+  useTranslatedHead({
+    title: "home.metaTitle",
+    description: "home.metaDescription",
+    ogTitle: "home.ogTitle",
+    ogDescription: "home.ogDescription",
+  });
+
   return (
     <Layout>
-      {/* HERO */}
       <section className="relative overflow-hidden">
         <img
           src={hero}
@@ -29,11 +54,16 @@ function Index() {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[color:var(--color-cream)]/40 via-[color:var(--color-cream)]/70 to-[color:var(--color-cream)]" />
         <div className="relative mx-auto max-w-6xl px-6 lg:px-10 pt-28 pb-40 lg:pt-40 lg:pb-56">
-          <p className="eyebrow mb-6">Restore <span className="divider-leaf"/> Reconnect <span className="divider-leaf"/> Rebuild</p>
+          <p className="eyebrow mb-6">
+            {t("common.restore")} <span className="divider-leaf" /> {t("common.reconnect")}{" "}
+            <span className="divider-leaf" /> {t("common.rebuild")}
+          </p>
           <h1 className="font-serif text-[2.8rem] sm:text-6xl lg:text-8xl leading-[1.05] max-w-4xl tracking-tight">
-            A quiet space for the <span className="font-light">mind</span>{" "}
+            {t("home.hero.titleBefore")} <span className="font-light">{t("home.hero.titleMind")}</span>{" "}
             <span className="relative inline-block">
-              <em className="italic font-light text-[color:var(--color-clay)]">to find yourself.</em>
+              <em className="italic font-light text-[color:var(--color-clay)]">
+                {t("home.hero.titleEmphasis")}
+              </em>
               <svg
                 aria-hidden="true"
                 className="absolute -bottom-2 left-0 w-full opacity-40"
@@ -45,27 +75,20 @@ function Index() {
             </span>
           </h1>
           <p className="mt-8 max-w-xl text-base lg:text-lg leading-relaxed text-foreground/75">
-            Helping you create a life rooted in resilience and inner strength — where you feel
-            empowered to face challenges with confidence and clarity. Compassionate, evidence-based
-            psychotherapy in Varanasi and online.
+            {t("home.hero.body")}
           </p>
           <div className="mt-10 flex flex-wrap gap-4">
             <Link to="/booking" className="btn-primary">
-              Book an initial consultation <ArrowRight size={14} />
+              {t("common.bookInitialConsultation")} <ArrowRight size={14} />
             </Link>
-            <Link to="/about" className="btn-ghost">Meet Devyani</Link>
+            <Link to="/about" className="btn-ghost">{t("home.hero.meet")}</Link>
           </div>
         </div>
       </section>
 
-      {/* INTRO STRIP */}
       <section className="border-y border-border bg-[color:var(--color-secondary)]/30">
         <div className="mx-auto max-w-6xl px-6 lg:px-10 py-10 grid md:grid-cols-3 gap-6 text-center md:text-left">
-          {[
-            { n: "01", t: "Restore", d: "Find balance in body and mind." },
-            { n: "02", t: "Reconnect", d: "Return to your inner voice." },
-            { n: "03", t: "Rebuild", d: "Grow stronger emotional roots." },
-          ].map((s) => (
+          {introItems.map((s) => (
             <div key={s.n} className="flex items-baseline gap-4">
               <span className="font-serif italic text-3xl text-[color:var(--color-clay)]">{s.n}</span>
               <div>
@@ -77,113 +100,105 @@ function Index() {
         </div>
       </section>
 
-      {/* ABOUT PREVIEW */}
-      <section className="mx-auto max-w-6xl px-6 lg:px-10 py-28 grid lg:grid-cols-2 gap-16 items-center">
-        <div className="relative">
-          <img
-            src={portrait}
-            alt="Devyani Barodh, Clinical Psychologist"
-            className="rounded-sm w-full max-w-md object-cover shadow-xl"
-            loading="lazy"
-          />
-          <div className="absolute -bottom-6 -right-2 lg:-right-10 bg-background border border-border px-6 py-4 max-w-[16rem]">
-            <p className="font-serif italic text-sm leading-snug">
-              "Healing is not about fixing yourself — it is about reconnecting with the parts of you
-              that were unheard."
-            </p>
-          </div>
-        </div>
-        <div>
-          <p className="eyebrow mb-4">A little about me</p>
-          <h2 className="font-serif text-4xl lg:text-5xl mb-6">Hi, I'm Devyani.</h2>
+      <section className="mx-auto max-w-6xl px-6 lg:px-10 py-28 grid lg:grid-cols-[0.9fr_1.25fr] gap-16 items-start">
+        <div className="lg:sticky lg:top-28">
+          <p className="eyebrow mb-4">{t("home.aboutPreview.eyebrow")}</p>
+          <h2 className="font-serif text-4xl lg:text-5xl mb-6">{t("home.aboutPreview.heading")}</h2>
           <p className="text-foreground/75 leading-relaxed mb-4">
-            As a psychotherapist, I believe healing is not about "fixing" yourself, but about
-            reconnecting with the parts of you that may have been unheard, overwhelmed, or
-            emotionally burdened through life experiences.
+            {t("home.aboutPreview.p1")}
           </p>
           <p className="text-foreground/75 leading-relaxed mb-8">
-            At ManoNirmaan, I offer a safe, compassionate, and non-judgmental space where
-            individuals can explore their emotions, understand their inner world, and move
-            toward healing with greater self-awareness and resilience.
+            {t("home.aboutPreview.p2")}
           </p>
-          <p className="text-sm italic text-muted-foreground mb-8">
-            M.Phil Clinical Psychology · M.Sc Clinical Psychology · B.A. Hons (Applied Psychology)
-          </p>
-          <Link to="/about" className="btn-ghost">Read my full story</Link>
+          <Link to="/about" className="btn-ghost">{t("common.readFullStory")}</Link>
+        </div>
+        <div className="grid sm:grid-cols-2 gap-4">
+          {teamMembers.map((member, index) => (
+            <article
+              key={member.name}
+              className={`overflow-hidden rounded-sm border border-border bg-background shadow-sm ${
+                index === 0 ? "sm:col-span-2 sm:grid sm:grid-cols-[12rem_1fr]" : ""
+              }`}
+            >
+              <img
+                src={member.image}
+                alt={member.name}
+                className={`w-full object-cover ${
+                  index === 0 ? "h-72 sm:h-full" : "aspect-[4/3]"
+                }`}
+                loading="lazy"
+              />
+              <div className="p-5">
+                <h3 className="font-serif text-2xl leading-tight">{member.name}</h3>
+                <p className="mt-2 text-sm font-medium text-[color:var(--color-clay)]">
+                  {member.title}
+                </p>
+                <p className="mt-4 text-sm leading-relaxed text-foreground/70">
+                  {member.focus}
+                </p>
+              </div>
+            </article>
+          ))}
         </div>
       </section>
 
-      {/* WHY CHOOSE */}
       <section className="bg-[color:var(--color-secondary)]/40 py-28">
         <div className="mx-auto max-w-6xl px-6 lg:px-10">
           <div className="max-w-2xl mb-16">
-            <p className="eyebrow mb-4">Why choose me as your therapist?</p>
-            <h2 className="font-serif text-4xl lg:text-5xl">Therapy held with warmth, discretion and clinical care.</h2>
+            <p className="eyebrow mb-4">{t("home.why.eyebrow")}</p>
+            <h2 className="font-serif text-4xl lg:text-5xl">{t("home.why.heading")}</h2>
           </div>
           <div className="grid md:grid-cols-2 gap-x-12 gap-y-12">
-            {[
-              { i: Heart, t: "Safe, Non-Judgmental Space for Growth", d: "I strive to create a warm, non-judgmental, and emotionally safe environment where you can openly explore your thoughts, feelings, and experiences at your own pace." },
-              { i: Shield, t: "Qualified & Evidence-Based Care", d: "With professional training in Clinical Psychology and experience across diverse clinical settings, I offer evidence-based psychological support tailored to each individual's unique needs and concerns." },
-              { i: Users, t: "Compassionate & Client-Centred Approach", d: "I believe therapy works best when a person feels genuinely heard, understood, and supported. My approach combines empathy, professionalism, and collaboration to help clients feel empowered in their healing journey." },
-              { i: Sprout, t: "Experience With Diverse Mental Health Concerns", d: "I have worked with children, adolescents, and adults facing a variety of mental health difficulties, including anxiety, depression, OCD, trauma-related concerns, PTSD, emotional difficulties, and relational wounds that may affect present relationships and self-perception." },
-              { i: Sprout, t: "Flexible & Accessible Support", d: "I offer both online and offline consultation options, making psychological support more accessible, comfortable, and convenient according to your needs." },
-            ].map(({ i: Icon, t, d }) => (
-              <div key={t} className="flex gap-5">
-                <div className="shrink-0 h-12 w-12 rounded-full bg-[color:var(--color-cream)] border border-border flex items-center justify-center text-[color:var(--color-clay)]">
-                  <Icon size={20} />
+            {whyItems.map(({ t: title, d }, index) => {
+              const Icon = whyIcons[index] ?? Sprout;
+              return (
+                <div key={title} className="flex gap-5">
+                  <div className="shrink-0 h-12 w-12 rounded-full bg-[color:var(--color-cream)] border border-border flex items-center justify-center text-[color:var(--color-clay)]">
+                    <Icon size={20} />
+                  </div>
+                  <div>
+                    <h3 className="font-serif text-2xl mb-2">{title}</h3>
+                    <p className="text-sm text-foreground/75 leading-relaxed">{d}</p>
+                  </div>
                 </div>
-                <div>
-                  <h3 className="font-serif text-2xl mb-2">{t}</h3>
-                  <p className="text-sm text-foreground/75 leading-relaxed">{d}</p>
-                </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* CONCERNS */}
       <section className="mx-auto max-w-6xl px-6 lg:px-10 py-28">
         <div className="grid lg:grid-cols-[1fr_1.4fr] gap-16">
           <div>
-            <p className="eyebrow mb-4">Areas of support</p>
-            <h2 className="font-serif text-4xl lg:text-5xl mb-6">Psychotherapy for a wide range of concerns.</h2>
+            <p className="eyebrow mb-4">{t("home.support.eyebrow")}</p>
+            <h2 className="font-serif text-4xl lg:text-5xl mb-6">{t("home.support.heading")}</h2>
             <p className="text-foreground/75 leading-relaxed mb-8">
-              Working with children, adolescents, and adults — meeting each person where they are,
-              with care tailored to their unique story.
+              {t("home.support.body")}
             </p>
-            <Link to="/services" className="btn-ghost">Explore services</Link>
+            <Link to="/services" className="btn-ghost">{t("common.exploreServices")}</Link>
           </div>
           <ul className="grid grid-cols-2 gap-x-8 gap-y-3 text-sm self-center">
-            {[
-              "Anxiety", "Depression", "Trauma & PTSD",
-              "OCD", "ADHD / Autism", "Bereavement",
-              "Complex Trauma", "Domestic Abuse", "Family Issues",
-              "Infertility / Miscarriage", "Intimacy Issues", "Low Self-Confidence",
-              "Menopause", "Chronic Illness / Pain", "Relationships",
-              "Dissociation", "Sexual Abuse", "Life Transitions",
-            ].map((c) => (
+            {concerns.map((c) => (
               <li key={c} className="border-b border-border/70 pb-2 text-foreground/80">{c}</li>
             ))}
           </ul>
         </div>
       </section>
 
-      {/* QUOTE / CTA */}
       <section className="relative overflow-hidden">
         <img src={growth} alt="" className="absolute inset-0 h-full w-full object-cover" loading="lazy" />
         <div className="absolute inset-0 bg-[color:var(--color-ink)]/70" />
         <div className="relative mx-auto max-w-4xl px-6 lg:px-10 py-32 text-center text-[color:var(--color-cream)]">
-          <p className="eyebrow !text-[color:var(--color-sage)] mb-6">You matter. You're heard.</p>
+          <p className="eyebrow !text-[color:var(--color-sage)] mb-6">{t("home.cta.eyebrow")}</p>
           <h2 className="font-serif text-4xl lg:text-6xl leading-tight">
-            Let's make you the author of your own life again.
+            {t("home.cta.heading")}
           </h2>
           <div className="mt-12 flex flex-wrap gap-4 justify-center">
             <Link
               to="/booking"
               className="btn-primary !bg-[color:var(--color-cream)] !text-[color:var(--color-ink)] hover:!bg-[color:var(--color-clay)] hover:!text-[color:var(--color-cream)]"
             >
-              Book initial consultation <ArrowRight size={14} />
+              {t("home.cta.button")} <ArrowRight size={14} />
             </Link>
           </div>
         </div>

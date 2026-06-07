@@ -1,46 +1,85 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
-import { parseBookingForm, submitBookingRequest } from "@/lib/bookings";
+import { useTranslatedHead } from "@/lib/useTranslatedHead";
+import {
+  parseBookingForm,
+  referralSourceOptions,
+  sessionLanguageOptions,
+  submitBookingRequest,
+  videoCallPlatformOptions,
+} from "@/lib/bookings";
 import { useState } from "react";
-import { Calendar, Clock, Video, MapPin, Check } from "lucide-react";
+import { Calendar, Clock, Video, MapPin, Check, Monitor } from "lucide-react";
 
 export const Route = createFileRoute("/booking")({
   head: () => ({
     meta: [
-      { title: "Book a Session — ManoNirmaan" },
+      { title: "Book a Session - ManoNirmaan" },
       {
         name: "description",
         content:
-          "Book an initial consultation or therapy session with Devyani Barodh. Online and in-person sessions available in Varanasi.",
+          "Book an initial consultation or support session with the ManoNirmaan team. Online and in-person sessions available in Varanasi.",
       },
-      { property: "og:title", content: "Book a Session — ManoNirmaan" },
-      { property: "og:description", content: "60-minute therapy sessions, online & in-person." },
+      { property: "og:title", content: "Book a Session - ManoNirmaan" },
+      { property: "og:description", content: "60-minute support sessions, online & in-person." },
     ],
   }),
   component: Booking,
 });
 
 function Booking() {
+  const { t } = useTranslation();
   const [type, setType] = useState<"online" | "offline">("online");
+  const [videoPlatform, setVideoPlatform] = useState<
+    (typeof videoCallPlatformOptions)[number] | ""
+  >("");
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const today = new Date().toISOString().split("T")[0];
 
+  useTranslatedHead({
+    title: "booking.metaTitle",
+    description: "booking.metaDescription",
+    ogTitle: "booking.ogTitle",
+    ogDescription: "booking.ogDescription",
+  });
+
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setError(null);
     setSubmitting(true);
 
-    const parsed = parseBookingForm(new FormData(e.currentTarget), type);
+    const parsed = parseBookingForm(new FormData(e.currentTarget), type, {
+      name: t("booking.validation.name"),
+      email: t("booking.validation.email"),
+      age: t("booking.validation.age"),
+      notes: t("booking.validation.notes"),
+      referralDetails: t("booking.validation.referralDetails"),
+      videoCallPreference: t("booking.validation.videoCallPreference"),
+    });
     if (!parsed.success) {
       setSubmitting(false);
-      setError(parsed.error.issues[0]?.message ?? "Please check the form and try again.");
+      setError(parsed.error.issues[0]?.message ?? t("booking.form.errorFallback"));
       return;
     }
 
-    const result = await submitBookingRequest(parsed.data);
+    const result = await submitBookingRequest(
+      parsed.data,
+      t("booking.form.submitFailure", { email: t("common.email") }),
+      {
+        languagePreference: t("booking.form.languagePreference"),
+        languageValue: t(`booking.form.languageOptions.${parsed.data.sessionLanguage}`),
+        referralSource: t("booking.form.referralSource"),
+        referralValue: parsed.data.referralSource
+          ? t(`booking.form.referralOptions.${parsed.data.referralSource}`)
+          : undefined,
+        referralDetails: t("booking.form.referralDetails"),
+        notes: t("booking.form.notes"),
+      },
+    );
     setSubmitting(false);
 
     if (!result.ok) {
@@ -54,44 +93,45 @@ function Booking() {
   return (
     <Layout>
       <section className="mx-auto max-w-6xl px-6 lg:px-10 pt-20 lg:pt-28 pb-12">
-        <p className="eyebrow mb-6">Book a therapy session</p>
+        <p className="eyebrow mb-6">{t("booking.eyebrow")}</p>
         <h1 className="font-serif text-5xl lg:text-7xl max-w-3xl leading-[1.05]">
-          Take the first step — <em className="text-[color:var(--color-clay)]">gently</em>.
+          {t("booking.titleBefore")}{" "}
+          <em className="text-[color:var(--color-clay)]">{t("booking.titleEmphasis")}</em>
+          {t("booking.titleAfter")}
         </h1>
         <p className="mt-8 max-w-2xl text-foreground/75 leading-relaxed">
-          To ensure we have established a safe foundation for our work, please only book a full
-          therapy session if we have already completed your initial consultation and agreed to
-          proceed together.
+          {t("booking.intro")}
         </p>
       </section>
 
       <section className="mx-auto max-w-6xl px-6 lg:px-10 pb-24 grid lg:grid-cols-[1fr_1.2fr] gap-12">
         <div className="bg-background border border-border p-8 rounded-sm h-fit">
-          <div className="eyebrow mb-3">Session</div>
-          <h2 className="font-serif text-3xl mb-2">60-minute Therapy Session</h2>
+          <div className="eyebrow mb-3">{t("booking.card.eyebrow")}</div>
+          <h2 className="font-serif text-3xl mb-2">{t("booking.card.title")}</h2>
           <p className="text-sm text-muted-foreground mb-6">
-            with Devyani Barodh, M.Phil Clinical Psychology
+            {t("booking.card.subtitle")}
           </p>
 
           <div className="space-y-3 text-sm border-y border-border py-5 mb-6">
             <div className="flex items-center gap-3">
-              <Clock size={16} className="text-[color:var(--color-clay)]" /> 60 minutes
+              <Clock size={16} className="text-[color:var(--color-clay)]" /> {t("booking.card.duration")}
             </div>
             <div className="flex items-center gap-3">
-              <Calendar size={16} className="text-[color:var(--color-clay)]" /> Weekly or
-              fortnightly
+              <Calendar size={16} className="text-[color:var(--color-clay)]" /> {t("booking.card.frequency")}
             </div>
             <div className="flex items-center gap-3">
-              <Video size={16} className="text-[color:var(--color-clay)]" /> Online via secure video
+              <Video size={16} className="text-[color:var(--color-clay)]" /> {t("booking.card.online")}
             </div>
             <div className="flex items-center gap-3">
-              <MapPin size={16} className="text-[color:var(--color-clay)]" /> Or in-person, Varanasi
+              <Monitor size={16} className="text-[color:var(--color-clay)]" /> {t("booking.card.videoPlatforms")}
+            </div>
+            <div className="flex items-center gap-3">
+              <MapPin size={16} className="text-[color:var(--color-clay)]" /> {t("booking.card.offline")}
             </div>
           </div>
 
           <p className="text-xs text-muted-foreground leading-relaxed">
-            After you submit your request, Devyani will reach out within 24–48 hours to confirm a
-            time and share the next steps.
+            {t("booking.card.note")}
           </p>
         </div>
 
@@ -101,51 +141,115 @@ function Booking() {
               <div className="inline-flex h-14 w-14 rounded-full bg-background items-center justify-center text-[color:var(--color-clay)] mb-6">
                 <Check size={26} />
               </div>
-              <h3 className="font-serif text-3xl mb-3">Thank you.</h3>
+              <h3 className="font-serif text-3xl mb-3">{t("booking.success.title")}</h3>
               <p className="text-foreground/75 max-w-md mx-auto">
-                Your request has been received. Devyani will be in touch personally within 24–48
-                hours.
+                {t("booking.success.body")}
               </p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} className="space-y-5" noValidate>
-              <h3 className="font-serif text-2xl mb-2">Request a session</h3>
+              <h3 className="font-serif text-2xl mb-2">{t("booking.form.title")}</h3>
 
               <div className="grid sm:grid-cols-2 gap-4">
-                <Field label="Full name" name="name" required autoComplete="name" />
-                <Field label="Age" name="age" type="number" min={1} max={120} autoComplete="off" />
+                <Field label={t("booking.form.name")} name="name" required autoComplete="name" />
+                <Field label={t("booking.form.age")} name="age" type="number" min={1} max={120} autoComplete="off" />
               </div>
-              <Field label="Email" name="email" type="email" required autoComplete="email" />
-              <Field label="Phone" name="phone" type="tel" autoComplete="tel" />
+              <Field label={t("booking.form.email")} name="email" type="email" required autoComplete="email" />
+              <Field label={t("booking.form.phone")} name="phone" type="tel" autoComplete="tel" />
 
               <div>
-                <label className="eyebrow block mb-3">Session type</label>
+                <label className="eyebrow block mb-3">{t("booking.form.sessionType")}</label>
                 <div className="grid grid-cols-2 gap-2">
-                  {(["online", "offline"] as const).map((t) => (
+                  {(["online", "offline"] as const).map((sessionType) => (
                     <button
-                      key={t}
+                      key={sessionType}
                       type="button"
-                      onClick={() => setType(t)}
+                      onClick={() => {
+                        setType(sessionType);
+                        if (sessionType === "offline") {
+                          setVideoPlatform("");
+                        }
+                      }}
                       className={`py-3 text-sm border rounded-sm transition-all ${
-                        type === t
+                        type === sessionType
                           ? "bg-[color:var(--color-primary)] text-[color:var(--color-primary-foreground)] border-[color:var(--color-primary)]"
                           : "border-border bg-background hover:border-foreground"
                       }`}
                     >
-                      {t === "online" ? "Online" : "In-person, Varanasi"}
+                      {sessionType === "online" ? t("booking.form.online") : t("booking.form.offline")}
                     </button>
                   ))}
                 </div>
               </div>
 
+              {type === "online" && (
+                <div>
+                  <label className="eyebrow block mb-2">
+                    {t("booking.form.videoCallPreference")}
+                    <span className="text-[color:var(--color-clay)]"> *</span>
+                  </label>
+                  <p className="text-xs text-muted-foreground mb-3">
+                    {t("booking.form.videoCallHint")}
+                  </p>
+                  <input type="hidden" name="videoCallPreference" value={videoPlatform} />
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                    {videoCallPlatformOptions.map((platform) => (
+                      <button
+                        key={platform}
+                        type="button"
+                        onClick={() => setVideoPlatform(platform)}
+                        className={`py-3 px-2 text-sm border rounded-sm transition-all text-left ${
+                          videoPlatform === platform
+                            ? "bg-[color:var(--color-primary)] text-[color:var(--color-primary-foreground)] border-[color:var(--color-primary)]"
+                            : "border-border bg-background hover:border-foreground"
+                        }`}
+                      >
+                        {t(`booking.form.videoCallOptions.${platform}`)}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               <div className="grid sm:grid-cols-2 gap-4">
-                <Field label="Preferred date" name="date" type="date" min={today} />
-                <Field label="Preferred time" name="time" type="time" />
+                <Field label={t("booking.form.date")} name="date" type="date" min={today} />
+                <Field label={t("booking.form.time")} name="time" type="time" />
               </div>
+
+              <div className="grid sm:grid-cols-2 gap-4">
+                <SelectField
+                  label={t("booking.form.languagePreference")}
+                  name="sessionLanguage"
+                  defaultValue="either"
+                  options={sessionLanguageOptions.map((option) => ({
+                    value: option,
+                    label: t(`booking.form.languageOptions.${option}`),
+                  }))}
+                />
+                <SelectField
+                  label={t("booking.form.referralSource")}
+                  name="referralSource"
+                  options={[
+                    { value: "", label: t("booking.form.referralOptions.none") },
+                    ...referralSourceOptions.map((option) => ({
+                      value: option,
+                      label: t(`booking.form.referralOptions.${option}`),
+                    })),
+                  ]}
+                />
+              </div>
+
+              <Field
+                label={t("booking.form.referralDetails")}
+                name="referralDetails"
+                maxLength={200}
+                autoComplete="off"
+                placeholder={t("booking.form.referralDetailsPlaceholder")}
+              />
 
               <div>
                 <label htmlFor="notes" className="eyebrow block mb-2">
-                  What brings you in?
+                  {t("booking.form.notes")}
                 </label>
                 <textarea
                   id="notes"
@@ -153,7 +257,7 @@ function Booking() {
                   rows={4}
                   maxLength={2000}
                   className="w-full bg-background border border-border rounded-sm p-3 text-sm focus:outline-none focus:border-foreground"
-                  placeholder="Share a little, if you'd like — only what feels comfortable."
+                  placeholder={t("booking.form.notesPlaceholder")}
                 />
               </div>
 
@@ -168,12 +272,12 @@ function Booking() {
                 disabled={submitting}
                 className="btn-primary w-full justify-center disabled:opacity-50"
               >
-                {submitting ? "Submitting…" : "Submit request"}
+                {submitting ? t("booking.form.submitting") : t("booking.form.submit")}
               </button>
               <p className="text-xs text-muted-foreground text-center">
-                Or email{" "}
-                <a href="mailto:barodhdevyani@gmail.com" className="underline">
-                  barodhdevyani@gmail.com
+                {t("booking.form.orEmail")}{" "}
+                <a href={`mailto:${t("common.email")}`} className="underline">
+                  {t("common.email")}
                 </a>
               </p>
             </form>
@@ -183,9 +287,9 @@ function Booking() {
 
       <section className="mx-auto max-w-4xl px-6 lg:px-10 pb-16 text-center">
         <p className="text-sm text-muted-foreground">
-          New to therapy?{" "}
+          {t("booking.form.newToTherapy")}{" "}
           <Link to="/approach" className="underline">
-            Learn what to expect
+            {t("common.learnWhatToExpect")}
           </Link>
           .
         </p>
@@ -201,7 +305,9 @@ function Field({
   required,
   min,
   max,
+  maxLength,
   autoComplete,
+  placeholder,
 }: {
   label: string;
   name: string;
@@ -209,7 +315,9 @@ function Field({
   required?: boolean;
   min?: number | string;
   max?: number | string;
+  maxLength?: number;
   autoComplete?: string;
+  placeholder?: string;
 }) {
   return (
     <div>
@@ -224,9 +332,43 @@ function Field({
         required={required}
         min={min}
         max={max}
+        maxLength={maxLength}
         autoComplete={autoComplete}
+        placeholder={placeholder}
         className="w-full bg-background border border-border rounded-sm p-3 text-sm focus:outline-none focus:border-foreground"
       />
+    </div>
+  );
+}
+
+function SelectField({
+  label,
+  name,
+  options,
+  defaultValue,
+}: {
+  label: string;
+  name: string;
+  options: Array<{ value: string; label: string }>;
+  defaultValue?: string;
+}) {
+  return (
+    <div>
+      <label htmlFor={name} className="eyebrow block mb-2">
+        {label}
+      </label>
+      <select
+        id={name}
+        name={name}
+        defaultValue={defaultValue}
+        className="w-full bg-background border border-border rounded-sm p-3 text-sm focus:outline-none focus:border-foreground"
+      >
+        {options.map((option) => (
+          <option key={option.value || "none"} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
     </div>
   );
 }

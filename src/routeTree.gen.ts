@@ -9,16 +9,28 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SessionDetailsRouteImport } from './routes/session-details'
 import { Route as ServicesRouteImport } from './routes/services'
+import { Route as DoctorLoginRouteImport } from './routes/doctor-login'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as BookingRouteImport } from './routes/booking'
 import { Route as ApproachRouteImport } from './routes/approach'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
+const SessionDetailsRoute = SessionDetailsRouteImport.update({
+  id: '/session-details',
+  path: '/session-details',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ServicesRoute = ServicesRouteImport.update({
   id: '/services',
   path: '/services',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DoctorLoginRoute = DoctorLoginRouteImport.update({
+  id: '/doctor-login',
+  path: '/doctor-login',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -53,7 +65,9 @@ export interface FileRoutesByFullPath {
   '/approach': typeof ApproachRoute
   '/booking': typeof BookingRoute
   '/contact': typeof ContactRoute
+  '/doctor-login': typeof DoctorLoginRoute
   '/services': typeof ServicesRoute
+  '/session-details': typeof SessionDetailsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -61,7 +75,9 @@ export interface FileRoutesByTo {
   '/approach': typeof ApproachRoute
   '/booking': typeof BookingRoute
   '/contact': typeof ContactRoute
+  '/doctor-login': typeof DoctorLoginRoute
   '/services': typeof ServicesRoute
+  '/session-details': typeof SessionDetailsRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -70,7 +86,9 @@ export interface FileRoutesById {
   '/approach': typeof ApproachRoute
   '/booking': typeof BookingRoute
   '/contact': typeof ContactRoute
+  '/doctor-login': typeof DoctorLoginRoute
   '/services': typeof ServicesRoute
+  '/session-details': typeof SessionDetailsRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -80,9 +98,19 @@ export interface FileRouteTypes {
     | '/approach'
     | '/booking'
     | '/contact'
+    | '/doctor-login'
     | '/services'
+    | '/session-details'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/approach' | '/booking' | '/contact' | '/services'
+  to:
+    | '/'
+    | '/about'
+    | '/approach'
+    | '/booking'
+    | '/contact'
+    | '/doctor-login'
+    | '/services'
+    | '/session-details'
   id:
     | '__root__'
     | '/'
@@ -90,7 +118,9 @@ export interface FileRouteTypes {
     | '/approach'
     | '/booking'
     | '/contact'
+    | '/doctor-login'
     | '/services'
+    | '/session-details'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -99,16 +129,32 @@ export interface RootRouteChildren {
   ApproachRoute: typeof ApproachRoute
   BookingRoute: typeof BookingRoute
   ContactRoute: typeof ContactRoute
+  DoctorLoginRoute: typeof DoctorLoginRoute
   ServicesRoute: typeof ServicesRoute
+  SessionDetailsRoute: typeof SessionDetailsRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/session-details': {
+      id: '/session-details'
+      path: '/session-details'
+      fullPath: '/session-details'
+      preLoaderRoute: typeof SessionDetailsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/services': {
       id: '/services'
       path: '/services'
       fullPath: '/services'
       preLoaderRoute: typeof ServicesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/doctor-login': {
+      id: '/doctor-login'
+      path: '/doctor-login'
+      fullPath: '/doctor-login'
+      preLoaderRoute: typeof DoctorLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -155,7 +201,9 @@ const rootRouteChildren: RootRouteChildren = {
   ApproachRoute: ApproachRoute,
   BookingRoute: BookingRoute,
   ContactRoute: ContactRoute,
+  DoctorLoginRoute: DoctorLoginRoute,
   ServicesRoute: ServicesRoute,
+  SessionDetailsRoute: SessionDetailsRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
