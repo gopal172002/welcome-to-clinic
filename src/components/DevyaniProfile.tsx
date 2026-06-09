@@ -36,8 +36,8 @@ export function DevyaniProfile({ variant }: DevyaniProfileProps) {
               {t("devyani.greeting")}
             </h2>
             <div className="space-y-5 text-foreground/75 leading-relaxed">
-              <p>{t("devyani.p1")}</p>
-              <p>{t("devyani.p2")}</p>
+              <p className="text-justify-block">{t("devyani.p1")}</p>
+              <p className="text-justify-block">{t("devyani.p2")}</p>
             </div>
             <p className="mt-8 font-serif italic text-foreground/70">
               {t("devyani.credentials")}
@@ -76,7 +76,7 @@ export function DevyaniProfile({ variant }: DevyaniProfileProps) {
 
         <div className="space-y-6 text-foreground/80 leading-relaxed text-[1.05rem]">
           {aboutParagraphs.map((paragraph) => (
-            <p key={paragraph}>{paragraph}</p>
+            <p key={paragraph} className="text-justify-block">{paragraph}</p>
           ))}
         </div>
       </div>

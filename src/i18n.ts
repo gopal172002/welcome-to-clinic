@@ -75,7 +75,7 @@ const resources: Resource = {
       footer: {
         tagline: "Guiding you back to yourself",
         description:
-          "A quiet space for clarity, healing and growth — guided by clinical psychology, held with care.",
+          "A safe and non-judgmental space where healing begins through understanding, collaboration, and evidence-based psychological care.",
         visit: "Visit",
         reach: "Reach",
         book: "Book a session ->",

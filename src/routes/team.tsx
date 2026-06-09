@@ -60,7 +60,7 @@ function Team() {
             </em>
           </span>
         </h1>
-        <p className="mt-8 max-w-2xl text-lg leading-relaxed text-foreground/75">
+        <p className="text-justify-block mt-8 max-w-2xl text-lg leading-relaxed text-foreground/75">
           {t("team.description")}
         </p>
       </section>

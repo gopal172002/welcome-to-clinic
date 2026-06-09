@@ -60,14 +60,14 @@ function Approach() {
 
       <section className="mx-auto max-w-6xl px-6 lg:px-10 grid lg:grid-cols-2 gap-16 pb-28">
         <div className="space-y-6 text-foreground/80 leading-relaxed text-[1.05rem]">
-          <p>{t("approach.p1")}</p>
-          <p>
+          <p className="text-justify-block">{t("approach.p1")}</p>
+          <p className="text-justify-block">
             <span className="font-serif italic text-[color:var(--color-clay)]">
               {t("approach.relationalLabel")}
             </span>
             {t("approach.relationalText")}
           </p>
-          <p>
+          <p className="text-justify-block">
             <span className="font-serif italic text-[color:var(--color-clay)]">
               {t("approach.integrativeLabel")}
             </span>
@@ -91,7 +91,7 @@ function Approach() {
                 <div className="font-serif italic text-5xl text-[color:var(--color-clay)]">{s.n}</div>
                 <div>
                   <h3 className="font-serif text-3xl mb-3">{s.t}</h3>
-                  <p className="text-foreground/75 leading-relaxed">{s.d}</p>
+                  <p className="text-justify-block text-foreground/75 leading-relaxed">{s.d}</p>
                 </div>
               </div>
             ))}

@@ -80,7 +80,7 @@ function Index() {
               </svg>
             </span>
           </h1>
-          <p className="mt-8 max-w-xl text-base lg:text-lg leading-relaxed text-foreground/75">
+          <p className="text-justify-block mt-8 max-w-xl text-base lg:text-lg leading-relaxed text-foreground/75">
             {t("home.hero.body")}
           </p>
           <div className="mt-10 flex flex-wrap gap-4">

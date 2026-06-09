@@ -57,7 +57,7 @@ function About() {
             <span className="text-[color:var(--color-sage-deep)]">+</span> &nbsp;
             <span className="text-[color:var(--color-clay)] italic">Nirmaan</span> / {t("about.mano.reconstruction")}
           </h2>
-          <p className="text-foreground/75 leading-relaxed max-w-2xl mx-auto">
+          <p className="text-justify-block text-foreground/75 leading-relaxed max-w-2xl mx-auto">
             {t("about.mano.body")}
           </p>
         </div>

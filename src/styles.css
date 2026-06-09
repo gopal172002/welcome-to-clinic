@@ -155,7 +155,7 @@
     vertical-align: middle;
   }
 
-  main p:not(.eyebrow) {
+  .text-justify-block {
     text-align: justify;
     text-justify: inter-word;
     text-wrap: pretty;
