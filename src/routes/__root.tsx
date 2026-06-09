@@ -12,6 +12,8 @@ import { useTranslation } from "react-i18next";
 
 import "@/i18n";
 import { getSupportedLanguage, LANGUAGE_STORAGE_KEY } from "@/i18n";
+import { buildPageHead, SITE_NAME, SITE_TAGLINE } from "@/lib/seo";
+import favicon from "@/assets/logo.jpg?url";
 import appCss from "../styles.css?url";
 
 function NotFoundComponent() {
@@ -74,36 +76,29 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   );
 }
 
+const defaultHead = buildPageHead({
+  title: `${SITE_NAME} | Clinical Psychology & Mental Health Care in Varanasi`,
+  description:
+    "ManoNirmaan offers RCI-registered clinical psychology, psychotherapy and counselling in Varanasi. Online and in-person sessions for anxiety, depression, trauma and more.",
+  path: "/",
+  ogTitle: `${SITE_NAME} — ${SITE_TAGLINE}`,
+  ogDescription:
+    "Compassionate mental health care in Varanasi. Clinical psychology, counselling, special education and community medicine.",
+});
+
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
   head: () => ({
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "ManoNirmaan - A quiet space for the mind" },
-      {
-        name: "description",
-        content:
-          "Compassionate mental health, counselling, special education and community medicine support from the ManoNirmaan team. Online and in-person sessions in Varanasi.",
-      },
-      { name: "author", content: "ManoNirmaan Team" },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary_large_image" },
+      ...defaultHead.meta,
     ],
     links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
-      {
-        rel: "icon",
-        href: "/favicon.jpg",
-        type: "image/jpeg",
-      },
-      {
-        rel: "apple-touch-icon",
-        href: "/apple-touch-icon.jpg",
-        type: "image/jpeg",
-      },
+      { rel: "stylesheet", href: appCss },
+      { rel: "icon", href: favicon, type: "image/jpeg", sizes: "any" },
+      { rel: "shortcut icon", href: favicon, type: "image/jpeg" },
+      { rel: "apple-touch-icon", href: favicon, type: "image/jpeg" },
+      ...defaultHead.links,
     ],
   }),
   shellComponent: RootShell,
@@ -116,6 +111,8 @@ function RootShell({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
+        <link rel="icon" href={favicon} type="image/jpeg" sizes="any" />
+        <link rel="shortcut icon" href={favicon} type="image/jpeg" />
         <HeadContent />
       </head>
       <body>

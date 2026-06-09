@@ -1,2 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /doctor-login
+Disallow: /session-details
+
+Sitemap: https://manonirmaan.in/sitemap.xml

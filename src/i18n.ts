@@ -43,7 +43,7 @@ const resources: Resource = {
         bookSession: "Book Session",
         bookASession: "Book a session",
         bookInitialConsultation: "Book an initial consultation",
-        readFullStory: "Meet the full team",
+        readFullStory: "Read my full story",
         exploreServices: "Explore services",
         learnWhatToExpect: "Learn what to expect",
       },
@@ -52,12 +52,13 @@ const resources: Resource = {
         about: "About",
         services: "Services",
         approach: "Approach",
+        team: "Our Team",
         contact: "Contact",
       },
       meta: {
-        rootTitle: "ManoNirmaan - A quiet space for the mind",
+        rootTitle: "ManoNirmaan | Clinical Psychology & Mental Health Care in Varanasi",
         rootDescription:
-          "Compassionate mental health, counselling, special education and community medicine support from the ManoNirmaan team. Online and in-person sessions in Varanasi.",
+          "RCI-registered clinical psychology, psychotherapy and counselling in Varanasi. Online and in-person sessions for anxiety, depression, trauma, OCD and more.",
       },
       root: {
         notFoundTitle: "Page not found",
@@ -72,14 +73,42 @@ const resources: Resource = {
         tagline: "Restore - Reconnect - Rebuild",
       },
       footer: {
-        tagline: "Care held by a team",
+        tagline: "Guiding you back to yourself",
         description:
-          "A quiet space for clarity, healing, learning and growth - guided by a multidisciplinary team and held with care.",
+          "A quiet space for clarity, healing and growth — guided by clinical psychology, held with care.",
         visit: "Visit",
         reach: "Reach",
         book: "Book a session ->",
         copyright: "(c) {{year}} ManoNirmaan. All rights reserved.",
         credentials: "Clinical psychology | counselling | special education | community medicine",
+      },
+      devyani: {
+        name: "Devyani Barodh",
+        role: "Clinical Psychologist",
+        quote:
+          "Healing is not about fixing yourself — it is about reconnecting with the parts of you that were unheard.",
+        eyebrow: "A little about me",
+        greeting: "Hi, I'm Devyani.",
+        greetingFull: "Hi, I'm Devyani — a clinical psychotherapist.",
+        p1:
+          "As a psychotherapist, I believe healing is not about \"fixing\" yourself, but about reconnecting with the parts of you that may have been unheard, overwhelmed, or emotionally burdened through life experiences. I worked with children, adolescents, and adults experiencing a variety of mental health difficulties, including anxiety, depression, PTSD, OCD, trauma-related concerns, emotional difficulties, and relational wounds that may echo in present relationships and self-perception.",
+        p2:
+          "At ManoNirmaan, we provide a safe, compassionate, and non-judgmental space where individuals can explore their emotions, understand their inner experiences, and move toward healing with greater self-awareness, resilience, and confidence.",
+        credentials:
+          "M.Phil Clinical Psychology · M.Sc Clinical Psychology · B.A. Hons (Applied Psychology)",
+        credentialsList: [
+          "M.Phil Clinical Psychology",
+          "M.Sc Clinical Psychology",
+          "B.A. Hons (Applied Psychology)",
+        ],
+        readFullStory: "Read my full story",
+        aboutParagraphs: [
+          "As a psychotherapist, I believe healing is not about \"fixing\" yourself, but about reconnecting with the parts of you that may have been unheard, overwhelmed, or emotionally burdened through life experiences. I worked with children, adolescents, and adults experiencing a variety of mental health difficulties, including anxiety, depression, PTSD, OCD, trauma-related concerns, emotional difficulties, and relational wounds that may echo in present relationships and self-perception.",
+          "At ManoNirmaan, we provide a safe, compassionate, and non-judgmental space where individuals can explore their emotions, understand their inner experiences, and move toward healing with greater self-awareness, resilience, and confidence.",
+          "Our multidisciplinary team consists of Clinical Psychologists, a Medical Doctor, a Special Educator and an Educational and Counseling Psychologist, bringing together diverse expertise to support the emotional, psychological, developmental, and overall well-being of individuals across different stages of life.",
+          "With experience across clinical, educational, and rehabilitation settings, our team offers psychotherapy, psychological assessments, psychoeducation, counseling, developmental support, crisis intervention, and holistic mental health care tailored to each individual's unique needs.",
+          "At ManoNirmaan, we believe that healing happens through understanding, connection, and collaboration. Together, we strive to create a therapeutic environment that fosters emotional growth, self-discovery, resilience, and lasting positive change. We recognize that every individual possesses an inherent capacity for healing and transformation, and we are committed to supporting that journey with empathy, professionalism, and care.",
+        ],
       },
       profile: {
         name: "ManoNirmaan Team",
@@ -93,63 +122,46 @@ const resources: Resource = {
           "Clinical psychology | counselling | special education | community medicine",
       },
       concerns: {
-        home: [
-          "Anxiety",
-          "Depression",
-          "Trauma & PTSD",
-          "OCD",
-          "ADHD / Autism",
-          "Bereavement",
-          "Complex Trauma",
-          "Domestic Abuse",
-          "Family Issues",
-          "Infertility / Miscarriage",
-          "Intimacy Issues",
-          "Low Self-Confidence",
-          "Menopause",
-          "Chronic Illness / Pain",
-          "Relationships",
-          "Dissociation",
-          "Sexual Abuse",
-          "Life Transitions",
-        ],
         services: [
-          "Abortion",
-          "ADHD / Autism",
+          "Stress & burnout",
           "Anxiety",
-          "Bereavement",
-          "Child Sexual Abuse",
-          "Complex Trauma",
           "Depression",
+          "OCD",
           "Dissociation",
-          "Domestic Abuse",
-          "Family Issues",
-          "Infertility / Miscarriage",
-          "Intimacy Issues",
-          "Low Self-Confidence",
-          "Menopause",
-          "Chronic Illness / Pain",
-          "Obsessive Compulsive Disorder (OCD)",
-          "Post-Traumatic Stress Disorder (PTSD)",
-          "Relationships",
-          "Sexual Abuse",
-          "Trauma",
+          "Trauma & PTSD",
+          "Addiction",
+          "ADHD",
+          "Autism",
+          "Career counseling",
+          "Emotional regulation",
+          "Academic challenges",
+          "Child behavioral issues",
+          "Learning disabilities",
+          "Relationship difficulties",
+          "Personal growth & self-development",
+          "Menopause issues",
+          "Low self-confidence",
+          "Low self-esteem",
+          "Intimacy issues",
+          "Speech & language difficulties",
+          "Family issues",
+          "Psychological assessments",
         ],
       },
       home: {
-        metaTitle: "ManoNirmaan - Mental Health & Learning Support in Varanasi",
+        metaTitle: "ManoNirmaan | Clinical Psychology & Mental Health Care in Varanasi",
         metaDescription:
-          "A quiet space for the mind. Compassionate clinical psychology, counselling, special education and community medicine support. Online & in-person sessions in Varanasi.",
-        ogTitle: "ManoNirmaan - A quiet space for the mind",
+          "RCI-registered clinical psychology, psychotherapy and counselling in Varanasi. Online and in-person sessions for anxiety, depression, trauma, OCD and more.",
+        ogTitle: "ManoNirmaan — A quiet space for the mind",
         ogDescription:
-          "Restore. Reconnect. Rebuild. Care from the ManoNirmaan multidisciplinary team.",
+          "Compassionate mental health care in Varanasi. Clinical psychology, counselling, special education and community medicine.",
         hero: {
-          titleBefore: "A quiet space for the",
+          titleBefore: "A safe, quiet space for the",
           titleMind: "mind",
           titleEmphasis: "to find yourself.",
           body:
-            "Helping you create a life rooted in resilience and inner strength - with clinical psychology, counselling, learning support and community medicine working together. Online and in-person care in Varanasi.",
-          meet: "Meet the team",
+            "Helping you create a life rooted in resilience and inner strength with clinical psychology, counselling, learning support and community medicine working together. Online and in-person care in Varanasi.",
+          meet: "About me",
         },
         intro: {
           items: [
@@ -212,11 +224,11 @@ const resources: Resource = {
         },
       },
       about: {
-        metaTitle: "About the ManoNirmaan Team - ManoNirmaan",
+        metaTitle: "About Devyani Barodh | RCI Clinical Psychologist in Varanasi",
         metaDescription:
-          "Meet the ManoNirmaan team offering clinical psychology, counselling, special education and community medicine support in Varanasi and online.",
-        ogTitle: "About the ManoNirmaan Team - ManoNirmaan",
-        ogDescription: "A multidisciplinary team for mental health, learning and accessible care.",
+          "Meet Devyani Barodh, RCI Registered Clinical Psychologist at ManoNirmaan. Psychotherapy for anxiety, depression, trauma and emotional wellbeing in Varanasi.",
+        ogTitle: "About Devyani Barodh — ManoNirmaan",
+        ogDescription: "Clinical psychotherapy with compassion, care and evidence-informed practice.",
         eyebrow: "About our team",
         heading: "ManoNirmaan is built around collaborative care.",
         paragraphs: [
@@ -267,12 +279,49 @@ const resources: Resource = {
           items: ["Honesty", "Respect", "Integrity", "Conscientiousness"],
         },
       },
-      services: {
-        metaTitle: "Services & Therapies - ManoNirmaan",
+      team: {
+        metaTitle: "Our Team | Mental Health Specialists — ManoNirmaan Varanasi",
         metaDescription:
-          "Clinical psychology, counselling, inclusive learning support and community medicine perspectives. A curated range of services, online and in-person.",
-        ogTitle: "Services & Therapies - ManoNirmaan",
-        ogDescription: "Support thoughtfully tailored to you.",
+          "Meet the ManoNirmaan team — clinical psychologists, a medical doctor, special educator and counselling psychologist offering compassionate care in Varanasi.",
+        ogTitle: "Our Team — ManoNirmaan",
+        ogDescription:
+          "Clinical psychology, counselling, special education and community medicine under one multidisciplinary team.",
+        eyebrow: "Our team members",
+        headingBefore: "The people behind",
+        headingBrand: "ManoNirmaan.",
+        description:
+          "ManoNirmaan is a team-oriented space bringing together clinical psychology, counselling, inclusive education and community medicine. A multidisciplinary team of psychologists, doctors and educators — united by a commitment to compassionate, evidence-based mental health care.",
+        members: [
+          {
+            title: "Assistant Professor & RCI Registered Clinical Psychologist",
+            quote:
+              "Healing is not about fixing yourself — it is about reconnecting with the parts of you that were unheard.",
+          },
+          {
+            title: "RCI Licensed Clinical Psychologist",
+            quote:
+              "Some things are too heavy to carry alone — and too important to keep burying. This is a space where you don't have to do either.",
+          },
+          {
+            title: "MBBS, MD",
+            quote: "Medicine heals the body; understanding and support help heal the mind.",
+          },
+          {
+            title: "Assistant Professor & Special Educator (Hearing Impairment)",
+            quote: "Together, we create accessible pathways to learning and success.",
+          },
+          {
+            title: "Education & Counselling Psychologist",
+            quote: "Guiding minds, shaping futures, and empowering lives.",
+          },
+        ],
+      },
+      services: {
+        metaTitle: "Mental Health Services & Therapy | ManoNirmaan Varanasi",
+        metaDescription:
+          "CBT, DBT, ACT, counselling, psychological assessment, child therapy and learning support in Varanasi. Online and in-person mental health services.",
+        ogTitle: "Services & Therapies — ManoNirmaan",
+        ogDescription: "Evidence-informed mental health services thoughtfully tailored to you.",
         eyebrow: "What we offer",
         titleBefore: "Support thoughtfully",
         titleEmphasis: "tailored",
@@ -318,17 +367,17 @@ const resources: Resource = {
           },
         ],
         concernsEyebrow: "Concerns we support",
-        concernsHeading: "A wide range of mental health, learning and wellbeing concerns.",
+        concernsHeading: "A wide range of mental health concerns.",
         pricingEyebrow: "Pricing",
         pricingHeading: "Sessions available online & in-person.",
         pricingBody: "Fees are shared transparently following your initial consultation.",
       },
       approach: {
-        metaTitle: "Our Care Approach - ManoNirmaan",
+        metaTitle: "Our Care Approach | Integrative Psychotherapy — ManoNirmaan",
         metaDescription:
-          "A relational, integrative approach to support - recognising and nurturing the strengths that brought you here. Initial assessment, frequency, and ongoing review.",
-        ogTitle: "Our Care Approach - ManoNirmaan",
-        ogDescription: "Relational, integrative, collaborative and evidence-informed support.",
+          "Learn about ManoNirmaan's relational, integrative approach to psychotherapy — personalised assessment, session planning and ongoing review in Varanasi.",
+        ogTitle: "Our Care Approach — ManoNirmaan",
+        ogDescription: "Relational, integrative, collaborative and evidence-informed mental health support.",
         eyebrow: "Our care approach",
         titleBefore: "Not about",
         titleEmphasis: "fixing you",
@@ -364,11 +413,11 @@ const resources: Resource = {
         ],
       },
       contact: {
-        metaTitle: "Contact - ManoNirmaan",
+        metaTitle: "Contact ManoNirmaan | Mental Health Clinic in Varanasi",
         metaDescription:
-          "Reach ManoNirmaan in Varanasi. Email manonirmaan@gmail.com or call 919196421388.",
-        ogTitle: "Contact - ManoNirmaan",
-        ogDescription: "A quiet space for the mind. Get in touch.",
+          "Contact ManoNirmaan in Chiraigaon, Varanasi. Email manonirmaan@gmail.com or call +91 91964 21388. Responses within 24–48 hours, Monday to Saturday.",
+        ogTitle: "Contact — ManoNirmaan",
+        ogDescription: "Reach our mental health clinic in Varanasi. We are here to help.",
         eyebrow: "Reach us",
         titleBefore: "A quiet space,",
         titleEmphasis: "just a message away",
@@ -381,11 +430,11 @@ const resources: Resource = {
           "Messages are responded to within 24-48 hours, Monday to Saturday. If this is a mental health emergency, please contact your nearest hospital. For clinic communication, call",
       },
       booking: {
-        metaTitle: "Book a Session - ManoNirmaan",
+        metaTitle: "Book a Session | ManoNirmaan Mental Health Clinic Varanasi",
         metaDescription:
-          "Book an initial consultation or support session with the ManoNirmaan team. Online and in-person sessions available in Varanasi.",
-        ogTitle: "Book a Session - ManoNirmaan",
-        ogDescription: "60-minute support sessions, online & in-person.",
+          "Book an initial consultation with ManoNirmaan in Varanasi. Clinical psychology, counselling and learning support — online or in-person sessions available.",
+        ogTitle: "Book a Session — ManoNirmaan",
+        ogDescription: "Request an initial consultation. Online and in-person mental health sessions in Varanasi.",
         eyebrow: "Book a session",
         titleBefore: "Take the first step -",
         titleEmphasis: "gently",
@@ -549,7 +598,7 @@ const resources: Resource = {
         bookSession: "सेशन बुक करें",
         bookASession: "सेशन बुक करें",
         bookInitialConsultation: "प्रारंभिक परामर्श बुक करें",
-        readFullStory: "पूरी टीम से मिलें",
+        readFullStory: "मेरी पूरी कहानी पढ़ें",
         exploreServices: "सेवाएं देखें",
         learnWhatToExpect: "जानें क्या अपेक्षा करें",
       },
@@ -558,12 +607,13 @@ const resources: Resource = {
         about: "परिचय",
         services: "सेवाएं",
         approach: "दृष्टिकोण",
+        team: "हमारी टीम",
         contact: "संपर्क",
       },
       meta: {
-        rootTitle: "ManoNirmaan - मन के लिए एक शांत स्थान",
+        rootTitle: "ManoNirmaan | वाराणसी में क्लिनिकल साइकोलॉजी और मानसिक स्वास्थ्य देखभाल",
         rootDescription:
-          "ManoNirmaan टीम से करुणामय मानसिक स्वास्थ्य, काउंसलिंग, विशेष शिक्षा और कम्युनिटी मेडिसिन सहयोग। वाराणसी में ऑनलाइन और व्यक्तिगत सेशन उपलब्ध।",
+          "वाराणसी में RCI-पंजीकृत क्लिनिकल साइकोलॉजी, साइकोथेरेपी और काउंसलिंग। चिंता, अवसाद, ट्रॉमा, OCD के लिए ऑनलाइन और व्यक्तिगत सेशन।",
       },
       root: {
         notFoundTitle: "पेज नहीं मिला",
@@ -587,6 +637,35 @@ const resources: Resource = {
         copyright: "© {{year}} ManoNirmaan. सर्वाधिकार सुरक्षित।",
         credentials: "क्लिनिकल साइकोलॉजी | काउंसलिंग | विशेष शिक्षा | कम्युनिटी मेडिसिन",
       },
+      devyani: {
+        name: "Devyani Barodh",
+        role: "क्लिनिकल मनोवैज्ञानिक",
+        quote:
+          "उपचार खुद को ठीक करने के बारे में नहीं है — यह उन हिस्सों से फिर जुड़ने के बारे में है जिनकी बात नहीं सुनी गई।",
+        eyebrow: "मेरे बारे में थोड़ा",
+        greeting: "नमस्ते, मैं Devyani हूँ।",
+        greetingFull: "नमस्ते, मैं Devyani हूँ — एक क्लिनिकल साइकोथेरेपिस्ट।",
+        p1:
+          "एक साइकोथेरेपिस्ट के रूप में, मेरा मानना है कि उपचार खुद को \"ठीक\" करने के बारे में नहीं है, बल्कि उन हिस्सों से फिर जुड़ने के बारे में है जो जीवन के अनुभवों से अनसुने, अभिभूत या भावनात्मक रूप से बोझिल हो गए हों। मैंने बच्चों, किशोरों और वयस्कों के साथ चिंता, अवसाद, PTSD, OCD, ट्रॉमा से जुड़ी चिंताएं, भावनात्मक कठिनाइयां, और रिश्तों में दिखने वाले पुराने घावों सहित विभिन्न मानसिक स्वास्थ्य कठिनाइयों में काम किया है।",
+        p2:
+          "ManoNirmaan में, हम एक सुरक्षित, करुणामय और बिना निर्णय वाला स्थान प्रदान करते हैं जहाँ व्यक्ति अपनी भावनाओं को समझ सकें, अपने अंदरूनी अनुभवों को जान सकें, और अधिक आत्म-जागरूकता, लचीलापन और आत्मविश्वास के साथ उपचार की ओर बढ़ सकें।",
+        credentials:
+          "M.Phil Clinical Psychology · M.Sc Clinical Psychology · B.A. Hons (Applied Psychology)",
+        credentialsList: [
+          "M.Phil Clinical Psychology",
+          "M.Sc Clinical Psychology",
+          "B.A. Hons (Applied Psychology)",
+          "RCI Registered Clinical Psychologist",
+        ],
+        readFullStory: "मेरी पूरी कहानी पढ़ें",
+        aboutParagraphs: [
+          "एक साइकोथेरेपिस्ट के रूप में, मेरा मानना है कि उपचार खुद को \"ठीक\" करने के बारे में नहीं है, बल्कि उन हिस्सों से फिर जुड़ने के बारे में है जो जीवन के अनुभवों से अनसुने, अभिभूत या भावनात्मक रूप से बोझिल हो गए हों। मैंने बच्चों, किशोरों और वयस्कों के साथ चिंता, अवसाद, PTSD, OCD, ट्रॉमा से जुड़ी चिंताएं, भावनात्मक कठिनाइयां, और रिश्तों में दिखने वाले पुराने घावों सहित विभिन्न मानसिक स्वास्थ्य कठिनाइयों में काम किया है।",
+          "ManoNirmaan में, हम एक सुरक्षित, करुणामय और बिना निर्णय वाला स्थान प्रदान करते हैं जहाँ व्यक्ति अपनी भावनाओं को समझ सकें, अपने अंदरूनी अनुभवों को जान सकें, और अधिक आत्म-जागरूकता, लचीलापन और आत्मविश्वास के साथ उपचार की ओर बढ़ सकें।",
+          "हमारी बहु-विषयक टीम में क्लिनिकल मनोवैज्ञानिक, एक चिकित्सक, एक विशेष शिक्षक और एक शैक्षिक और काउंसलिंग मनोवैज्ञानिक शामिल हैं, जो जीवन के विभिन्न चरणों में व्यक्तियों के भावनात्मक, मनोवैज्ञानिक, विकासात्मक और समग्र कल्याण का समर्थन करने के लिए विविध विशेषज्ञता लाते हैं।",
+          "क्लिनिकल, शैक्षिक और पुनर्वास सेटिंग्स में अनुभव के साथ, हमारी टीम साइकोथेरेपी, मनोवैज्ञानिक मूल्यांकन, साइकोएजुकेशन, काउंसलिंग, विकासात्मक सहयोग, संकट हस्तक्षेप और हर व्यक्ति की अनूठी जरूरतों के अनुसार समग्र मानसिक स्वास्थ्य देखभाल प्रदान करती है।",
+          "ManoNirmaan में, हम मानते हैं कि उपचार समझ, जुड़ाव और सहयोग के माध्यम से होता है। साथ मिलकर, हम एक चिकित्सीय वातावरण बनाने का प्रयास करते हैं जो भावनात्मक विकास, आत्म-खोज, लचीलापन और स्थायी सकारात्मक बदलाव को बढ़ावा दे। हम मानते हैं कि हर व्यक्ति में उपचार और परिवर्तन की अंतर्निहित क्षमता होती है, और हम सहानुभूति, व्यावसायिकता और देखभाल के साथ उस यात्रा का समर्थन करने के लिए प्रतिबद्ध हैं।",
+        ],
+      },
       profile: {
         name: "ManoNirmaan टीम",
         credentials: [
@@ -599,63 +678,46 @@ const resources: Resource = {
           "क्लिनिकल साइकोलॉजी | काउंसलिंग | विशेष शिक्षा | कम्युनिटी मेडिसिन",
       },
       concerns: {
-        home: [
-          "चिंता",
-          "अवसाद",
-          "ट्रॉमा और PTSD",
-          "OCD",
-          "ADHD / ऑटिज्म",
-          "शोक",
-          "कॉम्प्लेक्स ट्रॉमा",
-          "घरेलू दुर्व्यवहार",
-          "पारिवारिक समस्याएं",
-          "बांझपन / गर्भपात",
-          "निकटता से जुड़ी कठिनाइयां",
-          "कम आत्मविश्वास",
-          "मेनोपॉज",
-          "दीर्घकालिक बीमारी / दर्द",
-          "रिश्ते",
-          "डिसोसिएशन",
-          "यौन दुर्व्यवहार",
-          "जीवन में बदलाव",
-        ],
         services: [
-          "गर्भपात",
-          "ADHD / ऑटिज्म",
+          "तनाव और बर्नआउट",
           "चिंता",
-          "शोक",
-          "बाल यौन दुर्व्यवहार",
-          "कॉम्प्लेक्स ट्रॉमा",
           "अवसाद",
+          "OCD",
           "डिसोसिएशन",
-          "घरेलू दुर्व्यवहार",
-          "पारिवारिक समस्याएं",
-          "बांझपन / गर्भपात",
-          "निकटता से जुड़ी कठिनाइयां",
+          "ट्रॉमा और PTSD",
+          "व्यसन",
+          "ADHD",
+          "ऑटिज्म",
+          "करियर काउंसलिंग",
+          "भावनात्मक नियंत्रण",
+          "शैक्षणिक चुनौतियां",
+          "बच्चों के व्यवहार संबंधी मुद्दे",
+          "सीखने की अक्षमताएं",
+          "रिश्तों की कठिनाइयां",
+          "व्यक्तिगत विकास और आत्म-विकास",
+          "मेनोपॉज से जुड़ी समस्याएं",
           "कम आत्मविश्वास",
-          "मेनोपॉज",
-          "दीर्घकालिक बीमारी / दर्द",
-          "ऑब्सेसिव कम्पल्सिव डिसऑर्डर (OCD)",
-          "पोस्ट-ट्रॉमेटिक स्ट्रेस डिसऑर्डर (PTSD)",
-          "रिश्ते",
-          "यौन दुर्व्यवहार",
-          "ट्रॉमा",
+          "कम आत्म-सम्मान",
+          "निकटता से जुड़ी समस्याएं",
+          "भाषण और भाषा की कठिनाइयां",
+          "पारिवारिक समस्याएं",
+          "मनोवैज्ञानिक मूल्यांकन",
         ],
       },
       home: {
-        metaTitle: "ManoNirmaan - वाराणसी में मानसिक स्वास्थ्य और लर्निंग सपोर्ट",
+        metaTitle: "ManoNirmaan | वाराणसी में क्लिनिकल साइकोलॉजी और मानसिक स्वास्थ्य देखभाल",
         metaDescription:
-          "मन के लिए एक शांत स्थान। क्लिनिकल साइकोलॉजी, काउंसलिंग, विशेष शिक्षा और कम्युनिटी मेडिसिन सहयोग। वाराणसी में ऑनलाइन और व्यक्तिगत सेशन।",
-        ogTitle: "ManoNirmaan - मन के लिए एक शांत स्थान",
+          "वाराणसी में RCI-पंजीकृत क्लिनिकल साइकोलॉजी, साइकोथेरेपी और काउंसलिंग। चिंता, अवसाद, ट्रॉमा, OCD के लिए ऑनलाइन और व्यक्तिगत सेशन।",
+        ogTitle: "ManoNirmaan — मन के लिए एक शांत स्थान",
         ogDescription:
-          "संतुलन। पुनः जुड़ाव। पुनर्निर्माण। ManoNirmaan की बहु-विषयक टीम के साथ सहयोग।",
+          "वाराणसी में करुणामय मानसिक स्वास्थ्य देखभाल। क्लिनिकल साइकोलॉजी, काउंसलिंग, विशेष शिक्षा और कम्युनिटी मेडिसिन।",
         hero: {
           titleBefore: "मन के लिए एक शांत स्थान,",
           titleMind: "जहां",
           titleEmphasis: "आप स्वयं से फिर जुड़ सकें।",
           body:
             "आपको ऐसी जिंदगी बनाने में सहयोग जहां लचीलापन और अंदरूनी मजबूती हो - और जहां क्लिनिकल साइकोलॉजी, काउंसलिंग, लर्निंग सपोर्ट और कम्युनिटी मेडिसिन साथ काम करते हैं।",
-          meet: "टीम से मिलें",
+          meet: "मेरे बारे में",
         },
         intro: {
           items: [
@@ -667,7 +729,7 @@ const resources: Resource = {
         aboutPreview: {
           quote:
             "हीलिंग खुद को ठीक करने के बारे में नहीं है - यह अपने उन हिस्सों से फिर जुड़ने के बारे में है जो अनसुने रह गए थे।",
-          eyebrow: "मेरे बारे में थोड़ा",
+          eyebrow: "हमारी टीम",
           heading: "पांच लोग, देखभाल की एक साझा जगह।",
           p1:
             "ManoNirmaan एक टीम-ओरिएंटेड स्पेस है जहां क्लिनिकल साइकोलॉजी, काउंसलिंग, समावेशी शिक्षा और कम्युनिटी मेडिसिन साथ आते हैं।",
@@ -718,11 +780,11 @@ const resources: Resource = {
         },
       },
       about: {
-        metaTitle: "ManoNirmaan टीम के बारे में - ManoNirmaan",
+        metaTitle: "Devyani Barodh | वाराणसी में RCI क्लिनिकल मनोवैज्ञानिक",
         metaDescription:
-          "ManoNirmaan टीम से मिलें, जो क्लिनिकल साइकोलॉजी, काउंसलिंग, विशेष शिक्षा और कम्युनिटी मेडिसिन सहयोग देती है।",
-        ogTitle: "ManoNirmaan टीम के बारे में - ManoNirmaan",
-        ogDescription: "मानसिक स्वास्थ्य, लर्निंग और accessible care के लिए बहु-विषयक टीम।",
+          "ManoNirmaan की RCI Registered Clinical Psychologist Devyani Barodh से मिलें। वाराणसी में चिंता, अवसाद, ट्रॉमा के लिए साइकोथेरेपी।",
+        ogTitle: "Devyani Barodh के बारे में — ManoNirmaan",
+        ogDescription: "करुणा, देखभाल और प्रमाण-आधारित अभ्यास के साथ क्लिनिकल साइकोथेरेपी।",
         eyebrow: "हमारी टीम के बारे में",
         heading: "ManoNirmaan सहयोगी देखभाल पर आधारित है।",
         paragraphs: [
@@ -773,12 +835,49 @@ const resources: Resource = {
           items: ["ईमानदारी", "सम्मान", "निष्ठा", "कर्तव्यनिष्ठा"],
         },
       },
-      services: {
-        metaTitle: "सेवाएं और थेरेपी - ManoNirmaan",
+      team: {
+        metaTitle: "हमारी टीम | ManoNirmaan वाराणसी मानसिक स्वास्थ्य विशेषज्ञ",
         metaDescription:
-          "CBT, DBT, ACT, पर्सन-सेंटर्ड थेरेपी, माइंडफुलनेस, कपल और फैमिली थेरेपी। ऑनलाइन और व्यक्तिगत रूप से उपलब्ध क्लिनिकल सेवाएं।",
-        ogTitle: "सेवाएं और थेरेपी - ManoNirmaan",
-        ogDescription: "आपके लिए सोच-समझकर अनुकूलित थेरेपी।",
+          "ManoNirmaan टीम से मिलें — क्लिनिकल मनोवैज्ञानिक, चिकित्सक, विशेष शिक्षक और काउंसलिंग मनोवैज्ञानिक। वाराणसी में करुणामय देखभाल।",
+        ogTitle: "हमारी टीम — ManoNirmaan",
+        ogDescription:
+          "ManoNirmaan के पीछे के लोग — क्लिनिकल साइकोलॉजी, काउंसलिंग, विशेष शिक्षा और कम्युनिटी मेडिसिन।",
+        eyebrow: "हमारे टीम सदस्य",
+        headingBefore: "ManoNirmaan के पीछे",
+        headingBrand: "कौन हैं।",
+        description:
+          "मनोवैज्ञानिकों, चिकित्सकों और शिक्षकों की बहु-विषयक टीम — करुणामय, प्रमाण-आधारित मानसिक स्वास्थ्य देखभाल के प्रति प्रतिबद्धता से जुड़ी हुई।",
+        members: [
+          {
+            title: "सहायक प्राध्यापक और RCI पंजीकृत क्लिनिकल मनोवैज्ञानिक",
+            quote:
+              "उपचार खुद को ठीक करने के बारे में नहीं है — यह उन हिस्सों से फिर जुड़ने के बारे में है जिनकी बात नहीं सुनी गई।",
+          },
+          {
+            title: "RCI लाइसेंस प्राप्त क्लिनिकल मनोवैज्ञानिक",
+            quote:
+              "कुछ बातें अकेले उठाना बहुत भारी होती हैं — और दबाए रखना बहुत जरूरी। यह वह स्थान है जहाँ आपको दोनों नहीं करना पड़ता।",
+          },
+          {
+            title: "MBBS, MD",
+            quote: "चिकित्सा शरीर को ठीक करती है; समझ और सहयोग मन को ठीक करने में मदद करते हैं।",
+          },
+          {
+            title: "सहायक प्राध्यापक और विशेष शिक्षक (श्रवण बाधिता)",
+            quote: "साथ मिलकर, हम सीखने और सफलता के लिए सुलभ मार्ग बनाते हैं।",
+          },
+          {
+            title: "शिक्षा और काउंसलिंग मनोवैज्ञानिक",
+            quote: "मन का मार्गदर्शन, भविष्य का निर्माण, और जीवन को सशक्त बनाना।",
+          },
+        ],
+      },
+      services: {
+        metaTitle: "मानसिक स्वास्थ्य सेवाएं और थेरेपी | ManoNirmaan वाराणसी",
+        metaDescription:
+          "वाराणसी में CBT, DBT, ACT, काउंसलिंग, मनोवैज्ञानिक मूल्यांकन, बाल चिकित्सा और लर्निंग सपोर्ट। ऑनलाइन और व्यक्तिगत सेवाएं।",
+        ogTitle: "सेवाएं और थेरेपी — ManoNirmaan",
+        ogDescription: "प्रमाण-आधारित मानसिक स्वास्थ्य सेवाएं, आपके अनुसार अनुकूलित।",
         eyebrow: "हम क्या प्रदान करते हैं",
         titleBefore: "थेरेपी जो सोच-समझकर",
         titleEmphasis: "आपके अनुसार",
@@ -830,11 +929,11 @@ const resources: Resource = {
         pricingBody: "प्रारंभिक परामर्श के बाद शुल्क स्पष्ट रूप से साझा किए जाते हैं।",
       },
       approach: {
-        metaTitle: "हमारा care approach - ManoNirmaan",
+        metaTitle: "हमारा देखभाल दृष्टिकोण | ManoNirmaan वाराणसी",
         metaDescription:
-          "थेरेपी का संबंधपरक, इंटीग्रेटिव दृष्टिकोण - उन शक्तियों को पहचानना और पोषित करना जो आपको यहां तक लाई हैं। प्रारंभिक आकलन, सेशन आवृत्ति और नियमित समीक्षा।",
-        ogTitle: "हमारा care approach - ManoNirmaan",
-        ogDescription: "संबंधपरक, इंटीग्रेटिव, प्रमाण-आधारित मनोचिकित्सा।",
+          "ManoNirmaan का संबंधपरक, इंटीग्रेटिव साइकोथेरेपी दृष्टिकोण जानें — व्यक्तिगत आकलन, सेशन योजना और नियमित समीक्षा।",
+        ogTitle: "हमारा देखभाल दृष्टिकोण — ManoNirmaan",
+        ogDescription: "संबंधपरक, इंटीग्रेटिव, सहयोगी और प्रमाण-आधारित मानसिक स्वास्थ्य सहयोग।",
         eyebrow: "हमारा care approach",
         titleBefore: "यह आपको",
         titleEmphasis: "ठीक करने",
@@ -870,11 +969,11 @@ const resources: Resource = {
         ],
       },
       contact: {
-        metaTitle: "संपर्क - ManoNirmaan",
+        metaTitle: "संपर्क करें | ManoNirmaan मानसिक स्वास्थ्य क्लिनिक वाराणसी",
         metaDescription:
-          "वाराणसी में ManoNirmaan से संपर्क करें। ईमेल manonirmaan@gmail.com या कॉल 919196421388।",
-        ogTitle: "संपर्क - ManoNirmaan",
-        ogDescription: "मन के लिए एक शांत स्थान। संपर्क करें।",
+          "चिरईगांव, वाराणसी में ManoNirmaan से संपर्क करें। ईमेल manonirmaan@gmail.com या कॉल +91 91964 21388। सोम–शनि, 24–48 घंटे में उत्तर।",
+        ogTitle: "संपर्क — ManoNirmaan",
+        ogDescription: "वाराणसी में हमारे मानसिक स्वास्थ्य क्लिनिक से संपर्क करें।",
         eyebrow: "हमसे संपर्क करें",
         titleBefore: "एक शांत स्थान,",
         titleEmphasis: "बस एक संदेश दूर",
@@ -887,11 +986,11 @@ const resources: Resource = {
           "संदेशों का उत्तर सोमवार से शनिवार 24-48 घंटों के भीतर दिया जाता है। यदि यह मानसिक स्वास्थ्य आपातकाल है, तो कृपया अपने नजदीकी अस्पताल से संपर्क करें। क्लिनिक से जुड़ने के लिए कॉल करें:",
       },
       booking: {
-        metaTitle: "सेशन बुक करें - ManoNirmaan",
+        metaTitle: "सेशन बुक करें | ManoNirmaan वाराणसी",
         metaDescription:
-          "ManoNirmaan टीम के साथ प्रारंभिक परामर्श या सपोर्ट सेशन बुक करें। वाराणसी में ऑनलाइन और व्यक्तिगत सेशन उपलब्ध।",
-        ogTitle: "सेशन बुक करें - ManoNirmaan",
-        ogDescription: "60 मिनट के थेरेपी सेशन, ऑनलाइन और व्यक्तिगत।",
+          "वाराणसी में ManoNirmaan के साथ प्रारंभिक परामर्श बुक करें। क्लिनिकल साइकोलॉजी, काउंसलिंग — ऑनलाइन या व्यक्तिगत सेशन।",
+        ogTitle: "सेशन बुक करें — ManoNirmaan",
+        ogDescription: "प्रारंभिक परामर्श का अनुरोध करें। वाराणसी में ऑनलाइन और व्यक्तिगत सेशन।",
         eyebrow: "थेरेपी सेशन बुक करें",
         titleBefore: "पहला कदम उठाएं -",
         titleEmphasis: "धीरे से",

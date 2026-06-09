@@ -1,27 +1,24 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
-import { useTranslatedHead } from "@/lib/useTranslatedHead";
+import { buildPageHead, breadcrumbSchema, webPageSchema } from "@/lib/seo";
+import { usePageSeo } from "@/lib/usePageSeo";
+import { SeoJsonLd } from "@/components/SeoJsonLd";
 import growth from "@/assets/growth.jpg";
 
 type ApproachStep = { n: string; t: string; d: string };
 
+const approachHead = buildPageHead({
+  title: "Our Care Approach | Integrative Psychotherapy — ManoNirmaan",
+  description:
+    "Learn about ManoNirmaan's relational, integrative approach to psychotherapy — personalised assessment, session planning and ongoing review in Varanasi.",
+  path: "/approach",
+  ogTitle: "Our Care Approach — ManoNirmaan",
+  ogDescription: "Relational, integrative, collaborative and evidence-informed mental health support.",
+});
+
 export const Route = createFileRoute("/approach")({
-  head: () => ({
-    meta: [
-      { title: "Our Care Approach - ManoNirmaan" },
-      {
-        name: "description",
-        content:
-          "A relational, integrative approach to support - recognising and nurturing the strengths that brought you here. Initial assessment, frequency, and ongoing review.",
-      },
-      { property: "og:title", content: "Our Care Approach - ManoNirmaan" },
-      {
-        property: "og:description",
-        content: "Relational, integrative, collaborative and evidence-informed support.",
-      },
-    ],
-  }),
+  head: () => approachHead,
   component: Approach,
 });
 
@@ -29,7 +26,8 @@ function Approach() {
   const { t } = useTranslation();
   const steps = t("approach.steps", { returnObjects: true }) as ApproachStep[];
 
-  useTranslatedHead({
+  usePageSeo({
+    path: "/approach",
     title: "approach.metaTitle",
     description: "approach.metaDescription",
     ogTitle: "approach.ogTitle",
@@ -38,6 +36,19 @@ function Approach() {
 
   return (
     <Layout>
+      <SeoJsonLd
+        data={[
+          webPageSchema({
+            name: t("approach.metaTitle"),
+            description: t("approach.metaDescription"),
+            path: "/approach",
+          }),
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Approach", path: "/approach" },
+          ]),
+        ]}
+      />
       <section className="mx-auto max-w-6xl px-6 lg:px-10 pt-20 lg:pt-28 pb-16">
         <p className="eyebrow mb-6">{t("approach.eyebrow")}</p>
         <h1 className="font-serif text-5xl lg:text-7xl max-w-4xl leading-[1.05]">
@@ -64,7 +75,7 @@ function Approach() {
           </p>
         </div>
         <div>
-          <img src={growth} alt="" className="rounded-sm shadow-xl object-cover w-full" loading="lazy" />
+          <img src={growth} alt="Personal growth and healing through psychotherapy at ManoNirmaan" className="rounded-sm shadow-xl object-cover w-full" loading="lazy" />
         </div>
       </section>
 

@@ -1,24 +1,24 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
-import { useTranslatedHead } from "@/lib/useTranslatedHead";
+import { buildPageHead, breadcrumbSchema, webPageSchema } from "@/lib/seo";
+import { usePageSeo } from "@/lib/usePageSeo";
+import { SeoJsonLd } from "@/components/SeoJsonLd";
 import room from "@/assets/room.jpg";
 
 type Modality = { t: string; d: string };
 
+const servicesHead = buildPageHead({
+  title: "Mental Health Services & Therapy | ManoNirmaan Varanasi",
+  description:
+    "CBT, DBT, ACT, counselling, psychological assessment, child therapy and learning support in Varanasi. Online and in-person mental health services.",
+  path: "/services",
+  ogTitle: "Services & Therapies — ManoNirmaan",
+  ogDescription: "Evidence-informed mental health services thoughtfully tailored to you.",
+});
+
 export const Route = createFileRoute("/services")({
-  head: () => ({
-    meta: [
-      { title: "Services & Therapies - ManoNirmaan" },
-      {
-        name: "description",
-        content:
-          "Clinical psychology, counselling, inclusive learning support and community medicine perspectives. A curated range of services, online and in-person.",
-      },
-      { property: "og:title", content: "Services & Therapies - ManoNirmaan" },
-      { property: "og:description", content: "Support thoughtfully tailored to you." },
-    ],
-  }),
+  head: () => servicesHead,
   component: Services,
 });
 
@@ -27,7 +27,8 @@ function Services() {
   const modalities = t("services.modalities", { returnObjects: true }) as Modality[];
   const concerns = t("concerns.services", { returnObjects: true }) as string[];
 
-  useTranslatedHead({
+  usePageSeo({
+    path: "/services",
     title: "services.metaTitle",
     description: "services.metaDescription",
     ogTitle: "services.ogTitle",
@@ -36,6 +37,19 @@ function Services() {
 
   return (
     <Layout>
+      <SeoJsonLd
+        data={[
+          webPageSchema({
+            name: t("services.metaTitle"),
+            description: t("services.metaDescription"),
+            path: "/services",
+          }),
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Services", path: "/services" },
+          ]),
+        ]}
+      />
       <section className="mx-auto max-w-6xl px-6 lg:px-10 pt-20 lg:pt-28 pb-12">
         <p className="eyebrow mb-6">{t("services.eyebrow")}</p>
         <h1 className="font-serif text-5xl lg:text-7xl max-w-3xl leading-[1.05]">
@@ -64,7 +78,7 @@ function Services() {
 
       <section className="bg-[color:var(--color-secondary)]/40 py-24">
         <div className="mx-auto max-w-6xl px-6 lg:px-10 grid lg:grid-cols-2 gap-16 items-center">
-          <img src={room} alt="" className="rounded-sm shadow-xl object-cover w-full" loading="lazy" />
+          <img src={room} alt="Peaceful counselling room at ManoNirmaan clinic in Varanasi" className="rounded-sm shadow-xl object-cover w-full" loading="lazy" />
           <div>
             <p className="eyebrow mb-4">{t("services.concernsEyebrow")}</p>
             <h2 className="font-serif text-4xl lg:text-5xl mb-8 leading-tight">

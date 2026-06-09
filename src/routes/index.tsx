@@ -1,8 +1,10 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
-import { useTranslatedHead } from "@/lib/useTranslatedHead";
-import { teamMembers } from "@/lib/team";
+import { buildPageHead, webPageSchema } from "@/lib/seo";
+import { usePageSeo } from "@/lib/usePageSeo";
+import { SeoJsonLd } from "@/components/SeoJsonLd";
+import { DevyaniProfile } from "@/components/DevyaniProfile";
 import hero from "@/assets/hero.jpg";
 import growth from "@/assets/growth.jpg";
 import { ArrowRight, Heart, Shield, Sprout, Users } from "lucide-react";
@@ -12,22 +14,18 @@ type WhyItem = { t: string; d: string };
 
 const whyIcons = [Heart, Shield, Users, Sprout, Sprout] as const;
 
+const homeHead = buildPageHead({
+  title: "ManoNirmaan | Clinical Psychology & Mental Health Care in Varanasi",
+  description:
+    "RCI-registered clinical psychology, psychotherapy and counselling in Varanasi. Online and in-person sessions for anxiety, depression, trauma, OCD and more.",
+  path: "/",
+  ogTitle: "ManoNirmaan — A quiet space for the mind",
+  ogDescription:
+    "Compassionate mental health care in Varanasi. Clinical psychology, counselling, special education and community medicine.",
+});
+
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "ManoNirmaan - Mental Health & Learning Support in Varanasi" },
-      {
-        name: "description",
-        content:
-          "A quiet space for the mind. Compassionate clinical psychology, counselling, special education and community medicine support. Online & in-person sessions in Varanasi.",
-      },
-      { property: "og:title", content: "ManoNirmaan - A quiet space for the mind" },
-      {
-        property: "og:description",
-        content: "Restore. Reconnect. Rebuild. Care from the ManoNirmaan multidisciplinary team.",
-      },
-    ],
-  }),
+  head: () => homeHead,
   component: Index,
 });
 
@@ -35,9 +33,10 @@ function Index() {
   const { t } = useTranslation();
   const introItems = t("home.intro.items", { returnObjects: true }) as IntroItem[];
   const whyItems = t("home.why.items", { returnObjects: true }) as WhyItem[];
-  const concerns = t("concerns.home", { returnObjects: true }) as string[];
+  const concerns = t("concerns.services", { returnObjects: true }) as string[];
 
-  useTranslatedHead({
+  usePageSeo({
+    path: "/",
     title: "home.metaTitle",
     description: "home.metaDescription",
     ogTitle: "home.ogTitle",
@@ -46,10 +45,17 @@ function Index() {
 
   return (
     <Layout>
+      <SeoJsonLd
+        data={webPageSchema({
+          name: t("home.metaTitle"),
+          description: t("home.metaDescription"),
+          path: "/",
+        })}
+      />
       <section className="relative overflow-hidden">
         <img
           src={hero}
-          alt=""
+          alt="Calm therapy room at ManoNirmaan mental health clinic in Varanasi"
           className="absolute inset-0 h-full w-full object-cover opacity-70"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-[color:var(--color-cream)]/40 via-[color:var(--color-cream)]/70 to-[color:var(--color-cream)]" />
@@ -100,47 +106,7 @@ function Index() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 lg:px-10 py-28 grid lg:grid-cols-[0.9fr_1.25fr] gap-16 items-start">
-        <div className="lg:sticky lg:top-28">
-          <p className="eyebrow mb-4">{t("home.aboutPreview.eyebrow")}</p>
-          <h2 className="font-serif text-4xl lg:text-5xl mb-6">{t("home.aboutPreview.heading")}</h2>
-          <p className="text-foreground/75 leading-relaxed mb-4">
-            {t("home.aboutPreview.p1")}
-          </p>
-          <p className="text-foreground/75 leading-relaxed mb-8">
-            {t("home.aboutPreview.p2")}
-          </p>
-          <Link to="/about" className="btn-ghost">{t("common.readFullStory")}</Link>
-        </div>
-        <div className="grid sm:grid-cols-2 gap-4">
-          {teamMembers.map((member, index) => (
-            <article
-              key={member.name}
-              className={`overflow-hidden rounded-sm border border-border bg-background shadow-sm ${
-                index === 0 ? "sm:col-span-2 sm:grid sm:grid-cols-[12rem_1fr]" : ""
-              }`}
-            >
-              <img
-                src={member.image}
-                alt={member.name}
-                className={`w-full object-cover ${
-                  index === 0 ? "h-72 sm:h-full" : "aspect-[4/3]"
-                }`}
-                loading="lazy"
-              />
-              <div className="p-5">
-                <h3 className="font-serif text-2xl leading-tight">{member.name}</h3>
-                <p className="mt-2 text-sm font-medium text-[color:var(--color-clay)]">
-                  {member.title}
-                </p>
-                <p className="mt-4 text-sm leading-relaxed text-foreground/70">
-                  {member.focus}
-                </p>
-              </div>
-            </article>
-          ))}
-        </div>
-      </section>
+      <DevyaniProfile variant="preview" />
 
       <section className="bg-[color:var(--color-secondary)]/40 py-28">
         <div className="mx-auto max-w-6xl px-6 lg:px-10">
@@ -186,7 +152,7 @@ function Index() {
       </section>
 
       <section className="relative overflow-hidden">
-        <img src={growth} alt="" className="absolute inset-0 h-full w-full object-cover" loading="lazy" />
+        <img src={growth} alt="Nature symbolising emotional growth and healing at ManoNirmaan" className="absolute inset-0 h-full w-full object-cover" loading="lazy" />
         <div className="absolute inset-0 bg-[color:var(--color-ink)]/70" />
         <div className="relative mx-auto max-w-4xl px-6 lg:px-10 py-32 text-center text-[color:var(--color-cream)]">
           <p className="eyebrow !text-[color:var(--color-sage)] mb-6">{t("home.cta.eyebrow")}</p>

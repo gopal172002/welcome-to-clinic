@@ -15,10 +15,10 @@ export type TeamMember = {
 export const teamMembers: TeamMember[] = [
   {
     name: "Devyani Barodh",
-    title: "RCI Registered Clinical Psychologist",
+    title: "Assistant Professor & RCI Registered Clinical Psychologist",
     focus: "Psychotherapy, psychological assessment, crisis support and psychoeducation.",
     quote:
-      "Healing is not about fixing yourself. It is about reconnecting with the parts of you that were unheard.",
+      "Healing is not about fixing yourself — it is about reconnecting with the parts of you that were unheard.",
     image: devyaniImage,
   },
   {
@@ -26,8 +26,15 @@ export const teamMembers: TeamMember[] = [
     title: "RCI Licensed Clinical Psychologist",
     focus: "Clinical psychology support for emotional wellbeing, growth and self-understanding.",
     quote:
-      "Some things are too heavy to carry alone and too important to keep burying. This is a space where you do not have to do either.",
+      "Some things are too heavy to carry alone — and too important to keep burying. This is a space where you don't have to do either.",
     image: priyaImage,
+  },
+  {
+    name: "Dr. Ravi Patidar",
+    title: "MBBS, MD",
+    focus: "Community medicine, public health perspective and whole-person support.",
+    quote: "Medicine heals the body; understanding and support help heal the mind.",
+    image: raviImage,
   },
   {
     name: "Pathan Tofikkhan Anvarkhan",
@@ -42,13 +49,5 @@ export const teamMembers: TeamMember[] = [
     focus: "Educational guidance, counselling support and student development.",
     quote: "Guiding minds, shaping futures, and empowering lives.",
     image: shubhamImage,
-  },
-  {
-    name: "Dr. Ravi Patidar",
-    title: "MBBS, MD Community Medicine",
-    focus: "Community medicine, public health perspective and whole-person support.",
-    quote:
-      "Medicine heals the body; understanding and support help heal the mind.",
-    image: raviImage,
   },
 ];

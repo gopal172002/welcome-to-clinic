@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as TeamRouteImport } from './routes/team'
 import { Route as SessionDetailsRouteImport } from './routes/session-details'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as DoctorLoginRouteImport } from './routes/doctor-login'
@@ -18,6 +19,11 @@ import { Route as ApproachRouteImport } from './routes/approach'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
+const TeamRoute = TeamRouteImport.update({
+  id: '/team',
+  path: '/team',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SessionDetailsRoute = SessionDetailsRouteImport.update({
   id: '/session-details',
   path: '/session-details',
@@ -68,6 +74,7 @@ export interface FileRoutesByFullPath {
   '/doctor-login': typeof DoctorLoginRoute
   '/services': typeof ServicesRoute
   '/session-details': typeof SessionDetailsRoute
+  '/team': typeof TeamRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -78,6 +85,7 @@ export interface FileRoutesByTo {
   '/doctor-login': typeof DoctorLoginRoute
   '/services': typeof ServicesRoute
   '/session-details': typeof SessionDetailsRoute
+  '/team': typeof TeamRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -89,6 +97,7 @@ export interface FileRoutesById {
   '/doctor-login': typeof DoctorLoginRoute
   '/services': typeof ServicesRoute
   '/session-details': typeof SessionDetailsRoute
+  '/team': typeof TeamRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -101,6 +110,7 @@ export interface FileRouteTypes {
     | '/doctor-login'
     | '/services'
     | '/session-details'
+    | '/team'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -111,6 +121,7 @@ export interface FileRouteTypes {
     | '/doctor-login'
     | '/services'
     | '/session-details'
+    | '/team'
   id:
     | '__root__'
     | '/'
@@ -121,6 +132,7 @@ export interface FileRouteTypes {
     | '/doctor-login'
     | '/services'
     | '/session-details'
+    | '/team'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -132,10 +144,18 @@ export interface RootRouteChildren {
   DoctorLoginRoute: typeof DoctorLoginRoute
   ServicesRoute: typeof ServicesRoute
   SessionDetailsRoute: typeof SessionDetailsRoute
+  TeamRoute: typeof TeamRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/team': {
+      id: '/team'
+      path: '/team'
+      fullPath: '/team'
+      preLoaderRoute: typeof TeamRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/session-details': {
       id: '/session-details'
       path: '/session-details'
@@ -204,6 +224,7 @@ const rootRouteChildren: RootRouteChildren = {
   DoctorLoginRoute: DoctorLoginRoute,
   ServicesRoute: ServicesRoute,
   SessionDetailsRoute: SessionDetailsRoute,
+  TeamRoute: TeamRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

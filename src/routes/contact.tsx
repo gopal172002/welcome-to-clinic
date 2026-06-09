@@ -1,25 +1,30 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
-import { useTranslatedHead } from "@/lib/useTranslatedHead";
+import { buildPageHead, breadcrumbSchema, webPageSchema } from "@/lib/seo";
+import { usePageSeo } from "@/lib/usePageSeo";
+import { SeoJsonLd } from "@/components/SeoJsonLd";
 import { Mail, Phone, MapPin, Clock } from "lucide-react";
 
+const contactHead = buildPageHead({
+  title: "Contact ManoNirmaan | Mental Health Clinic in Varanasi",
+  description:
+    "Contact ManoNirmaan in Chiraigaon, Varanasi. Email manonirmaan@gmail.com or call +91 91964 21388. Responses within 24–48 hours, Monday to Saturday.",
+  path: "/contact",
+  ogTitle: "Contact — ManoNirmaan",
+  ogDescription: "Reach our mental health clinic in Varanasi. We are here to help.",
+});
+
 export const Route = createFileRoute("/contact")({
-  head: () => ({
-    meta: [
-      { title: "Contact - ManoNirmaan" },
-      { name: "description", content: "Reach ManoNirmaan in Varanasi. Email manonirmaan@gmail.com or call 919196421388." },
-      { property: "og:title", content: "Contact - ManoNirmaan" },
-      { property: "og:description", content: "A quiet space for the mind. Get in touch." },
-    ],
-  }),
+  head: () => contactHead,
   component: Contact,
 });
 
 function Contact() {
   const { t } = useTranslation();
 
-  useTranslatedHead({
+  usePageSeo({
+    path: "/contact",
     title: "contact.metaTitle",
     description: "contact.metaDescription",
     ogTitle: "contact.ogTitle",
@@ -48,6 +53,19 @@ function Contact() {
 
   return (
     <Layout>
+      <SeoJsonLd
+        data={[
+          webPageSchema({
+            name: t("contact.metaTitle"),
+            description: t("contact.metaDescription"),
+            path: "/contact",
+          }),
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Contact", path: "/contact" },
+          ]),
+        ]}
+      />
       <section className="mx-auto max-w-6xl px-6 lg:px-10 pt-20 lg:pt-28 pb-16">
         <p className="eyebrow mb-6">{t("contact.eyebrow")}</p>
         <h1 className="font-serif text-5xl lg:text-7xl max-w-3xl leading-[1.05]">

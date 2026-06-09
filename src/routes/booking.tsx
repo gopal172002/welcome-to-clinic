@@ -1,7 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
-import { useTranslatedHead } from "@/lib/useTranslatedHead";
+import { buildPageHead, breadcrumbSchema, webPageSchema } from "@/lib/seo";
+import { usePageSeo } from "@/lib/usePageSeo";
+import { SeoJsonLd } from "@/components/SeoJsonLd";
 import {
   parseBookingForm,
   referralSourceOptions,
@@ -12,19 +14,17 @@ import {
 import { useState } from "react";
 import { Calendar, Clock, Video, MapPin, Check, Monitor } from "lucide-react";
 
+const bookingHead = buildPageHead({
+  title: "Book a Session | ManoNirmaan Mental Health Clinic Varanasi",
+  description:
+    "Book an initial consultation with ManoNirmaan in Varanasi. Clinical psychology, counselling and learning support — online or in-person sessions available.",
+  path: "/booking",
+  ogTitle: "Book a Session — ManoNirmaan",
+  ogDescription: "Request an initial consultation. Online and in-person mental health sessions in Varanasi.",
+});
+
 export const Route = createFileRoute("/booking")({
-  head: () => ({
-    meta: [
-      { title: "Book a Session - ManoNirmaan" },
-      {
-        name: "description",
-        content:
-          "Book an initial consultation or support session with the ManoNirmaan team. Online and in-person sessions available in Varanasi.",
-      },
-      { property: "og:title", content: "Book a Session - ManoNirmaan" },
-      { property: "og:description", content: "60-minute support sessions, online & in-person." },
-    ],
-  }),
+  head: () => bookingHead,
   component: Booking,
 });
 
@@ -40,7 +40,8 @@ function Booking() {
 
   const today = new Date().toISOString().split("T")[0];
 
-  useTranslatedHead({
+  usePageSeo({
+    path: "/booking",
     title: "booking.metaTitle",
     description: "booking.metaDescription",
     ogTitle: "booking.ogTitle",
@@ -92,6 +93,19 @@ function Booking() {
 
   return (
     <Layout>
+      <SeoJsonLd
+        data={[
+          webPageSchema({
+            name: t("booking.metaTitle"),
+            description: t("booking.metaDescription"),
+            path: "/booking",
+          }),
+          breadcrumbSchema([
+            { name: "Home", path: "/" },
+            { name: "Book a Session", path: "/booking" },
+          ]),
+        ]}
+      />
       <section className="mx-auto max-w-6xl px-6 lg:px-10 pt-20 lg:pt-28 pb-12">
         <p className="eyebrow mb-6">{t("booking.eyebrow")}</p>
         <h1 className="font-serif text-5xl lg:text-7xl max-w-3xl leading-[1.05]">
