@@ -1,10 +1,10 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import { Layout } from "@/components/Layout";
-import { buildPageHead, breadcrumbSchema, webPageSchema } from "@/lib/seo";
+import { buildPageHead, breadcrumbSchema, CONTACT, webPageSchema } from "@/lib/seo";
 import { usePageSeo } from "@/lib/usePageSeo";
 import { SeoJsonLd } from "@/components/SeoJsonLd";
-import { Mail, Phone, MapPin, Clock } from "lucide-react";
+import { Instagram, Mail, Phone, MapPin, Clock } from "lucide-react";
 
 const contactHead = buildPageHead({
   title: "Contact ManoNirmaan | Mental Health Clinic in Varanasi",
@@ -49,6 +49,13 @@ function Contact() {
       l: [t("common.phoneDisplay")],
       href: `tel:${t("common.phoneHref")}`,
     },
+    {
+      i: Instagram,
+      t: t("contact.instagram"),
+      l: [CONTACT.instagramHandle],
+      href: CONTACT.instagram,
+      external: true,
+    },
   ];
 
   return (
@@ -75,15 +82,19 @@ function Contact() {
         </h1>
       </section>
 
-      <section className="mx-auto max-w-6xl px-6 lg:px-10 pb-28 grid md:grid-cols-3 gap-8">
-        {cards.map(({ i: Icon, t: title, l, href }) => (
+      <section className="mx-auto max-w-6xl px-6 lg:px-10 pb-28 grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {cards.map(({ i: Icon, t: title, l, href, external }) => (
           <div key={title} className="bg-background border border-border p-8 rounded-sm">
             <div className="h-11 w-11 rounded-full bg-[color:var(--color-secondary)] flex items-center justify-center text-[color:var(--color-clay)] mb-5">
               <Icon size={18} />
             </div>
             <div className="eyebrow mb-2">{title}</div>
             {href ? (
-              <a href={href} className="font-serif text-xl hover:text-[color:var(--color-clay)]">
+              <a
+                href={href}
+                className="font-serif text-xl hover:text-[color:var(--color-clay)]"
+                {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+              >
                 {l.map((line) => <div key={line}>{line}</div>)}
               </a>
             ) : (

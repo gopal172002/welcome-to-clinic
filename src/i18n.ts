@@ -425,6 +425,7 @@ const resources: Resource = {
         visit: "Visit",
         email: "Email",
         phone: "Phone",
+        instagram: "Instagram",
         responseEyebrow: "A note on response times",
         responseBefore:
           "Messages are responded to within 24-48 hours, Monday to Saturday. If this is a mental health emergency, please contact your nearest hospital. For clinic communication, call",
@@ -981,6 +982,7 @@ const resources: Resource = {
         visit: "पता",
         email: "ईमेल",
         phone: "फोन",
+        instagram: "Instagram",
         responseEyebrow: "उत्तर देने के समय पर नोट",
         responseBefore:
           "संदेशों का उत्तर सोमवार से शनिवार 24-48 घंटों के भीतर दिया जाता है। यदि यह मानसिक स्वास्थ्य आपातकाल है, तो कृपया अपने नजदीकी अस्पताल से संपर्क करें। क्लिनिक से जुड़ने के लिए कॉल करें:",

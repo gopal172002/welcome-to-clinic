@@ -1,7 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { useTranslation } from "react-i18next";
 import logo from "@/assets/logo.jpg";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { CONTACT } from "@/lib/seo";
+import { Instagram, Mail, Phone, MapPin } from "lucide-react";
 
 export function SiteFooter() {
   const { t } = useTranslation();
@@ -44,6 +45,15 @@ export function SiteFooter() {
             <a href={`tel:${t("common.phoneHref")}`} className="flex items-center gap-2 hover:text-[color:var(--color-clay)]">
               <Phone size={16} className="text-[color:var(--color-clay)]" />
               {t("common.phoneDisplay")}
+            </a>
+            <a
+              href={CONTACT.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 hover:text-[color:var(--color-clay)]"
+            >
+              <Instagram size={16} className="text-[color:var(--color-clay)]" />
+              {CONTACT.instagramHandle}
             </a>
           </div>
           <Link to="/booking" className="inline-block mt-6 text-sm border-b border-foreground pb-0.5">

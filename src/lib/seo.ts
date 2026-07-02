@@ -10,6 +10,8 @@ export const CONTACT = {
   email: "manonirmaan@gmail.com",
   phone: "+919196421388",
   phoneDisplay: "+91 91964 21388",
+  instagram: "https://www.instagram.com/mano_nirmaan",
+  instagramHandle: "@mano_nirmaan",
   address: {
     street: "Chiraigaon, Near Block Office",
     locality: "Varanasi",
@@ -36,8 +38,11 @@ export function absoluteUrl(path: string = "/"): string {
   return normalizedPath === "/" ? SITE_URL : `${SITE_URL}${normalizedPath}`;
 }
 
+/** Bump `OG_IMAGE_VERSION` when the share-preview image changes (clears WhatsApp/social cache). */
+const OG_IMAGE_VERSION = "2";
+
 export function ogImageUrl(): string {
-  return `${SITE_URL}/favicon.jpg`;
+  return `${SITE_URL}/logo.jpg?v=${OG_IMAGE_VERSION}`;
 }
 
 type PageHeadInput = {
@@ -75,7 +80,9 @@ export function buildPageHead({
     { property: "og:description", content: resolvedOgDescription },
     { property: "og:url", content: url },
     { property: "og:image", content: image },
-    { property: "og:image:alt", content: `${SITE_NAME} logo` },
+    { property: "og:image:width", content: "343" },
+    { property: "og:image:height", content: "375" },
+    { property: "og:image:alt", content: `${SITE_NAME} — Talking helps, listening heals` },
     { name: "twitter:card", content: "summary_large_image" },
     { name: "twitter:title", content: resolvedOgTitle },
     { name: "twitter:description", content: resolvedOgDescription },
@@ -102,6 +109,7 @@ export function organizationSchema() {
     image: ogImageUrl(),
     email: CONTACT.email,
     telephone: CONTACT.phone,
+    sameAs: [CONTACT.instagram],
     medicalSpecialty: "Psychiatric",
     address: {
       "@type": "PostalAddress",
